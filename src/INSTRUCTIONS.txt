@@ -1,0 +1,178 @@
+================================================================================
+INSTRUCTIONS POUR FINALISER LE SITE TÉLÉMÉDECINE & E-SANTÉ
+================================================================================
+
+Ce fichier contient toutes les instructions pour ajouter les fichiers audio 
+des experts, le PDF de l'article AMUE et modifier les articles scientifiques.
+
+================================================================================
+1. AJOUTER LES FICHIERS AUDIO DES EXPERTS
+================================================================================
+
+ÉTAPE 1 : Créer le dossier audio
+---------------------------------
+Créez un dossier nommé "audio" dans le dossier /public/ de votre projet :
+  /public/audio/
+
+ÉTAPE 2 : Placer les fichiers audio
+------------------------------------
+Placez vos fichiers audio d'entretiens dans ce dossier avec les noms EXACTS suivants :
+
+  ✅ /public/audio/mira-ballout.mp3
+  ✅ /public/audio/anne-sophie-cases.mp3
+  ✅ /public/audio/gregoire-mercier.mp3
+
+⚠️ IMPORTANT : 
+- Respectez exactement ces noms de fichiers (minuscules, tirets)
+- Format accepté : .mp3 (recommandé) ou .wav, .ogg, .m4a
+- Les fichiers seront automatiquement détectés et affichés sur la page des experts
+
+ÉTAPE 3 : Vérifier l'affichage
+-------------------------------
+Une fois les fichiers placés, un lecteur audio apparaîtra automatiquement 
+sous chaque carte d'expert correspondant.
+
+
+================================================================================
+2. AJOUTER LE PDF DE L'ARTICLE AMUE
+================================================================================
+
+ÉTAPE 1 : Créer le dossier documents
+-------------------------------------
+Créez un dossier nommé "documents" dans le dossier /public/ de votre projet :
+  /public/documents/
+
+ÉTAPE 2 : Placer le fichier PDF
+--------------------------------
+Placez votre article AMUE dans ce dossier avec le nom :
+
+  ✅ /public/documents/article-amue.pdf
+
+⚠️ IMPORTANT :
+- Le fichier doit être au format PDF
+- Respectez exactement ce nom de fichier
+
+ÉTAPE 3 : Modifier le lien dans le code
+----------------------------------------
+Ouvrez le fichier : /components/ArticleResume.tsx
+
+Trouvez la ligne 41 qui contient :
+  href="#"
+
+Remplacez "#" par "/documents/article-amue.pdf" :
+  href="/documents/article-amue.pdf"
+
+✅ Le bouton "Accéder au document" ouvrira maintenant votre PDF !
+
+
+================================================================================
+3. MODIFIER LES ARTICLES SCIENTIFIQUES
+================================================================================
+
+Il y a 2 pages d'articles scientifiques à modifier :
+
+📄 PAGE 1 : /components/documentation/DocumentationArticles1.tsx (4 articles)
+📄 PAGE 2 : /components/documentation/DocumentationArticles2.tsx (4 articles)
+
+STRUCTURE D'UN ARTICLE
+----------------------
+Chaque article contient 5 champs :
+
+{
+  titre: "Le titre complet de l'article",
+  auteur: "Nom de l'auteur ou des auteurs",
+  annee: "2024",
+  description: "Une courte description de l'article en français",
+  lien: "https://doi.org/xxxxx ou URL complète de l'article"
+}
+
+EXEMPLE DE MODIFICATION
+-----------------------
+Ouvrez /components/documentation/DocumentationArticles1.tsx
+
+Trouvez le tableau "articles" (ligne 5) et modifiez les informations :
+
+const articles = [
+  {
+    titre: "Impact of E-Health Literacy on Diabetes Self-Care Activities",
+    auteur: "AlShehri, Waleed S., et Yasser Y. Khojah",
+    annee: "2025",
+    description: "Étude de l'impact de la littératie en e-santé...",
+    lien: "https://doi.org/10.2196/62819"
+  },
+  // ... 3 autres articles
+];
+
+CONSEILS
+--------
+✅ Gardez la même structure avec les 4 articles par page
+✅ Utilisez des guillemets pour encadrer le texte
+✅ Utilisez des liens DOI complets : https://doi.org/xxxxx
+✅ Écrivez les descriptions en français
+✅ N'oubliez pas la virgule après chaque article (sauf le dernier)
+
+ARTICLES À MODIFIER
+-------------------
+Page 1 (DocumentationArticles1.tsx) : Articles 1 à 4
+Page 2 (DocumentationArticles2.tsx) : Articles 5 à 8
+
+
+================================================================================
+4. MODIFIER LE CONTENU DE L'ARTICLE AMUE
+================================================================================
+
+Fichier : /components/ArticleResume.tsx
+
+RÉSUMÉ DE L'ARTICLE (ligne 57-61)
+----------------------------------
+Trouvez la section "Résumé" et modifiez le texte :
+
+<p className="text-gray-700 leading-relaxed">
+  [VOTRE RÉSUMÉ ICI - Décrivez votre article en 2-3 phrases]
+</p>
+
+MOTS-CLÉS (ligne 5-12)
+----------------------
+Modifiez la liste des mots-clés :
+
+const motsCles = [
+  'Télémédecine',
+  'E-santé',
+  'Controverse',
+  // Ajoutez ou modifiez vos mots-clés ici
+];
+
+DATE ET NOMBRE DE MOTS (ligne 77-78)
+-------------------------------------
+Mettez à jour la date et le nombre de mots :
+
+Date de publication : <span className="font-semibold">[VOTRE DATE]</span>
+Nombre de mots : <span className="font-semibold">[NOMBRE]</span>
+
+
+================================================================================
+5. VÉRIFICATION FINALE
+================================================================================
+
+✅ Les 3 fichiers audio sont dans /public/audio/ avec les bons noms
+✅ Le PDF AMUE est dans /public/documents/article-amue.pdf
+✅ Le lien du PDF est modifié dans ArticleResume.tsx (ligne 41)
+✅ Les 8 articles scientifiques sont à jour (4 par page)
+✅ Le résumé et les mots-clés de l'article AMUE sont personnalisés
+✅ Testez chaque lien pour vérifier qu'il fonctionne
+
+
+================================================================================
+6. BESOIN D'AIDE ?
+================================================================================
+
+Si vous rencontrez des problèmes :
+
+1. Vérifiez que les noms de fichiers sont EXACTEMENT comme indiqué
+2. Vérifiez que les dossiers /public/audio/ et /public/documents/ existent
+3. Vérifiez que vous avez bien sauvegardé les modifications dans les fichiers
+4. Actualisez la page du navigateur (F5 ou Ctrl+R)
+
+================================================================================
+BON COURAGE ! 🚀
+================================================================================

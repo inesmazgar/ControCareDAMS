@@ -58,13 +58,13 @@ export default function App() {
   const slides = [
     "accueil",
     "statistiques",
+    "enjeux-transversaux",
     "arguments-favorables",
     "sources-continuite",
     "sources-couts",
     "arguments-defavorables",
     "sources-donnees",
     "sources-deshumanisation",
-    "enjeux-transversaux",
     "chronologie-group1",
     "chronologie-group2",
     "chronologie-group3",
@@ -156,32 +156,33 @@ export default function App() {
           <Statistics setActiveSection={handleSectionChange} />
         </Slide>
 
+
         <Slide isActive={currentSlide === 2}>
-          <ArgumentsFavorables />
+          <EnjeuxTransversaux />
         </Slide>
 
         <Slide isActive={currentSlide === 3}>
-          <SourcesContinuite />
+          <ArgumentsFavorables />
         </Slide>
 
         <Slide isActive={currentSlide === 4}>
-          <SourcesCouts />
+          <SourcesContinuite />
         </Slide>
 
         <Slide isActive={currentSlide === 5}>
-          <ArgumentsDefavorables />
+          <SourcesCouts />
         </Slide>
 
         <Slide isActive={currentSlide === 6}>
-          <SourcesDonnees />
+          <ArgumentsDefavorables />
         </Slide>
 
         <Slide isActive={currentSlide === 7}>
-          <SourcesDeshumanisation />
+          <SourcesDonnees />
         </Slide>
 
         <Slide isActive={currentSlide === 8}>
-          <EnjeuxTransversaux />
+          <SourcesDeshumanisation />
         </Slide>
 
         <Slide isActive={currentSlide === 9}>

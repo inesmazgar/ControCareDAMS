@@ -13,7 +13,7 @@ export function Header({ activeSection, setActiveSection }: HeaderProps) {
   const navItems = [
     { id: 'accueil', label: 'Accueil' },
     { id: 'statistiques', label: 'Statistiques' },
-    { id: 'arguments-favorables', label: 'Argumentation' },
+    { id: 'enjeux-transversaux', label: 'Argumentation' },
     { id: 'chronologie-group1', label: 'Chronologie' },
     { id: 'experts', label: 'Experts' },
     { id: 'documentation-entretiens', label: 'Documentation' },

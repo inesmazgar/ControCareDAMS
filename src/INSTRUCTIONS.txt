@@ -6,7 +6,7 @@ Ce fichier contient toutes les instructions pour ajouter les fichiers audio
 des experts, le PDF de l'article AMUE et modifier les articles scientifiques.
 
 ================================================================================
-1. AJOUTER LES FICHIERS AUDIO DES EXPERTS
+1. AJOUTER LES FICHIERS AUDIO DES EXPERTS (fait)
 ================================================================================
 
 ÉTAPE 1 : Créer le dossier audio
@@ -34,7 +34,7 @@ sous chaque carte d'expert correspondant.
 
 
 ================================================================================
-2. AJOUTER LE PDF DE L'ARTICLE AMUE
+2. AJOUTER LE PDF DE L'ARTICLE AMUE 
 ================================================================================
 
 ÉTAPE 1 : Créer le dossier documents

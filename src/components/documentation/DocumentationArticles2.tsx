@@ -8,28 +8,28 @@ export function DocumentationArticles2() {
       auteur: "Rhodrick, Nyasha Musakuro",
       annee: "2025",
       description: "État actuel de l'adoption des outils de santé numérique pour les services de santé mentale.",
-      lien: "https://doi.org/10.1007/s11126-025-10123-4"
+      lien: "https://www.proquest.com/docview/3203475946/abstract/D03A86D5738A49A9PQ/2?sourcetype=Scholarly%20Journals"
     },
     {
       titre: "Innovations in E-Health",
       auteur: "Wicks, Paul, et al.",
       annee: "2014",
       description: "Analyse des innovations fondamentales en e-santé et leur impact sur les soins.",
-      lien: "https://doi.org/10.2196/jmir.2952"
+      lien: "https://www.proquest.com/docview/1491225586/abstract/198273BB6A5F4BE9PQ/1?sourcetype=Scholarly%20Journals"
     },
     {
       titre: "L'e-santé : l'empowerment du patient connecté",
       auteur: "Cases, Anne-Sophie",
       annee: "2017",
       description: "Étude de l'autonomisation des patients par les technologies de santé connectée.",
-      lien: "https://doi.org/10.3917/heg.172.0033"
+      lien: "https://shs.cairn.info/revue-journal-de-gestion-et-d-economie-medicales-2017-4-page-137?lang=fr"
     },
     {
       titre: "Objets connectés et santé",
       auteur: "Debet, Anne",
       annee: "2017",
       description: "Analyse juridique et éthique des objets connectés dans le domaine de la santé.",
-      lien: "https://doi.org/10.3917/legi.602.0264"
+      lien: "https://droit.cairn.info/revue-journal-du-droit-de-la-sante-et-de-l-assurance-maladie-2017-1-page-34"
     }
   ];
 
@@ -40,7 +40,7 @@ export function DocumentationArticles2() {
           <FileText className="text-red-600 mr-4" size={48} />
           <h1 className="text-gray-900 text-4xl font-bold">Articles Scientifiques</h1>
         </div>
-        
+
         <p className="text-gray-600 text-center mb-8 max-w-3xl mx-auto">
           Publications académiques et articles de recherche consultés pour cette étude.
         </p>

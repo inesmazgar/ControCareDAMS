@@ -6,30 +6,30 @@ export function IllustrationsVideos() {
     {
       type: 'Vidéo',
       titre: 'Téléconsultation : Comment ça marche ?',
-      description: 'Démonstration pratique d\'une téléconsultation',
-      duree: '3:45',
-      lien: 'https://www.youtube.com/watch?v=3PgNPc-iFW8'
+      description: 'Démonstration pratique d\'une téléconsultation, La Quotidienne',
+      duree: '3:59',
+      lien: 'https://youtu.be/wFpaGOBxMjM?si=YH-1Va4VN0ZA3XF-'
     },
     {
       type: 'Vidéo',
-      titre: 'Témoignage : Patient en zone rurale',
-      description: 'Impact de la télémédecine sur l\'accès aux soins',
-      duree: '5:12',
-      lien: 'https://www.youtube.com/watch?v=QZ3Kv0TqQEg'
+      titre: 'Beaugency : la téléconsultation se développe en milieu rural',
+      description: 'La téléconsultation continue à se développer dans la région Centre-Val de Loire pour pallier la pénurie de médecins généralistes.',
+      duree: '1:43',
+      lien: 'https://youtu.be/dYeE7Tw09B4?si=2pVmsJiew-uNYZWb'
     },
     {
       type: 'Vidéo',
       titre: 'E-santé : Enjeux et perspectives',
-      description: 'Conférence sur l\'avenir de la santé numérique',
-      duree: '12:30',
-      lien: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+      description: 'La Chaire Santé Intégrative du Conservatoire national des arts et métiers (CNAM) a organisé le premier colloque Santé Intégrative le 23 septembre 2022 à Paris, évènement qui a mobilisé 500 personnes.',
+      duree: '52:52',
+      lien: 'https://youtu.be/UDS-j56T9Eg?si=xutAoSW7lV4WvRcy'
     },
     {
       type: 'Infographie',
       titre: 'Les chiffres de la télémédecine en France',
-      description: 'Évolution des consultations 2019-2024',
-      format: 'PDF',
-      lien: 'https://images.google.com/images/telemedicine-statistics-france'
+      description: 'Évolution des consultations 2019-2024, CHU Rouen',
+      format: 'PNG',
+      lien: 'https://www.chu-rouen.fr/wp-content/uploads/sites/66/2024/01/Nombre-de-teleconsultations.png'
     }
   ];
 
@@ -93,16 +93,7 @@ export function IllustrationsVideos() {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-8 p-6 bg-red-50 border border-red-200 rounded-xl max-w-3xl mx-auto"
-        >
-          <p className="text-sm text-gray-700 text-center leading-relaxed">
-            <span className="font-semibold">Note :</span> Ces ressources sont disponibles dans le dossier complet du projet et peuvent être consultées pour approfondir la compréhension des enjeux de la télémédecine.
-          </p>
-        </motion.div>
+        
       </div>
     </div>
   );

@@ -18,7 +18,6 @@ import { MethodologieStep1 } from "./components/methodologie/MethodologieStep1";
 import { MethodologieStep2 } from "./components/methodologie/MethodologieStep2";
 import { MethodologieStep3 } from "./components/methodologie/MethodologieStep3";
 import { MethodologieEntretiensEthique } from "./components/methodologie/MethodologieEntretiensEthique";
-import { DocumentationEntretiens } from "./components/documentation/DocumentationEntretiens";
 import { DocumentationArticles1 } from "./components/documentation/DocumentationArticles1";
 import { DocumentationArticles2 } from "./components/documentation/DocumentationArticles2";
 import { DocumentationOuvrages } from "./components/documentation/DocumentationOuvrages";
@@ -45,7 +44,7 @@ export default function App() {
   // Mettre à jour le titre de la page et le favicon
   useEffect(() => {
     document.title = "ControCare : Controverse de Télémédecine";
-    
+
     // Créer et ajouter le favicon SVG
     const link = document.querySelector("link[rel*='icon']") as HTMLLinkElement || document.createElement('link');
     link.type = 'image/svg+xml';
@@ -58,6 +57,22 @@ export default function App() {
   const slides = [
     "accueil",
     "statistiques",
+
+    // Experts & Méthodologie
+    "experts",
+    "methodologie-analyse",
+    "methodologie-step1",
+    "methodologie-step2",
+    "methodologie-step3",
+    "methodologie-entretiens-ethique",
+
+    // Chronologie
+    "chronologie-group1",
+    "chronologie-group2",
+    "chronologie-group3",
+    "chronologie-group4",
+
+    // Argumentation
     "enjeux-transversaux",
     "arguments-favorables",
     "sources-continuite",
@@ -65,17 +80,8 @@ export default function App() {
     "arguments-defavorables",
     "sources-donnees",
     "sources-deshumanisation",
-    "chronologie-group1",
-    "chronologie-group2",
-    "chronologie-group3",
-    "chronologie-group4",
-    "experts",
-    "methodologie-analyse",
-    "methodologie-step1",
-    "methodologie-step2",
-    "methodologie-step3",
-    "methodologie-entretiens-ethique",
-    "documentation-entretiens",
+
+    // Documentation
     "documentation-articles1",
     "documentation-articles2",
     "documentation-ouvrages",
@@ -84,11 +90,14 @@ export default function App() {
     "documentation-sites-web",
     "documentation-sites-web2",
     "illustrations-videos",
+
+    // AMUE + Conclusion -> Equipe
     "article",
-    "team-group1",
-    "team-group2",
     "remerciements1",
     "remerciements2",
+    "team-group1",
+    "team-group2",
+
     "disclaimer"
   ];
 
@@ -156,132 +165,132 @@ export default function App() {
           <Statistics setActiveSection={handleSectionChange} />
         </Slide>
 
-
+        {/* Experts & Méthodologie */}
         <Slide isActive={currentSlide === 2}>
-          <EnjeuxTransversaux />
-        </Slide>
-
-        <Slide isActive={currentSlide === 3}>
-          <ArgumentsFavorables />
-        </Slide>
-
-        <Slide isActive={currentSlide === 4}>
-          <SourcesContinuite />
-        </Slide>
-
-        <Slide isActive={currentSlide === 5}>
-          <SourcesCouts />
-        </Slide>
-
-        <Slide isActive={currentSlide === 6}>
-          <ArgumentsDefavorables />
-        </Slide>
-
-        <Slide isActive={currentSlide === 7}>
-          <SourcesDonnees />
-        </Slide>
-
-        <Slide isActive={currentSlide === 8}>
-          <SourcesDeshumanisation />
-        </Slide>
-
-        <Slide isActive={currentSlide === 9}>
-          <TimelineGroup1 />
-        </Slide>
-
-        <Slide isActive={currentSlide === 10}>
-          <TimelineGroup2 />
-        </Slide>
-
-        <Slide isActive={currentSlide === 11}>
-          <TimelineGroup3 />
-        </Slide>
-
-        <Slide isActive={currentSlide === 12}>
-          <TimelineGroup4 />
-        </Slide>
-
-        <Slide isActive={currentSlide === 13}>
           <Experts />
         </Slide>
 
-        <Slide isActive={currentSlide === 14}>
+        <Slide isActive={currentSlide === 3}>
           <MethodologieAnalyse />
         </Slide>
 
-        <Slide isActive={currentSlide === 15}>
+        <Slide isActive={currentSlide === 4}>
           <MethodologieStep1 />
         </Slide>
 
-        <Slide isActive={currentSlide === 16}>
+        <Slide isActive={currentSlide === 5}>
           <MethodologieStep2 />
         </Slide>
 
-        <Slide isActive={currentSlide === 17}>
+        <Slide isActive={currentSlide === 6}>
           <MethodologieStep3 />
         </Slide>
 
-        <Slide isActive={currentSlide === 18}>
+        <Slide isActive={currentSlide === 7}>
           <MethodologieEntretiensEthique />
         </Slide>
 
-        <Slide isActive={currentSlide === 19}>
-          <DocumentationEntretiens />
+        {/* Chronologie */}
+        <Slide isActive={currentSlide === 8}>
+          <TimelineGroup1 />
         </Slide>
 
-        <Slide isActive={currentSlide === 20}>
+        <Slide isActive={currentSlide === 9}>
+          <TimelineGroup2 />
+        </Slide>
+
+        <Slide isActive={currentSlide === 10}>
+          <TimelineGroup3 />
+        </Slide>
+
+        <Slide isActive={currentSlide === 11}>
+          <TimelineGroup4 />
+        </Slide>
+
+        {/* Argumentation */}
+        <Slide isActive={currentSlide === 12}>
+          <EnjeuxTransversaux />
+        </Slide>
+
+        <Slide isActive={currentSlide === 13}>
+          <ArgumentsFavorables />
+        </Slide>
+
+        <Slide isActive={currentSlide === 14}>
+          <SourcesContinuite />
+        </Slide>
+
+        <Slide isActive={currentSlide === 15}>
+          <SourcesCouts />
+        </Slide>
+
+        <Slide isActive={currentSlide === 16}>
+          <ArgumentsDefavorables />
+        </Slide>
+
+        <Slide isActive={currentSlide === 17}>
+          <SourcesDonnees />
+        </Slide>
+
+        <Slide isActive={currentSlide === 18}>
+          <SourcesDeshumanisation />
+        </Slide>
+
+        {/* Documentation */}
+        <Slide isActive={currentSlide === 19}>
           <DocumentationArticles1 />
         </Slide>
 
-        <Slide isActive={currentSlide === 21}>
+        <Slide isActive={currentSlide === 20}>
           <DocumentationArticles2 />
         </Slide>
 
-        <Slide isActive={currentSlide === 22}>
+        <Slide isActive={currentSlide === 21}>
           <DocumentationOuvrages />
         </Slide>
 
-        <Slide isActive={currentSlide === 23}>
+        <Slide isActive={currentSlide === 22}>
           <DocumentationRapports />
         </Slide>
 
-        <Slide isActive={currentSlide === 24}>
+        <Slide isActive={currentSlide === 23}>
           <DocumentationTheses />
         </Slide>
 
-        <Slide isActive={currentSlide === 25}>
+        <Slide isActive={currentSlide === 24}>
           <DocumentationSitesWeb />
         </Slide>
 
-        <Slide isActive={currentSlide === 26}>
+        <Slide isActive={currentSlide === 25}>
           <DocumentationSitesWeb2 />
         </Slide>
 
-        <Slide isActive={currentSlide === 27}>
+        <Slide isActive={currentSlide === 26}>
           <IllustrationsVideos />
         </Slide>
 
-        <Slide isActive={currentSlide === 28}>
+        {/* AMUE + Conclusion -> Equipe */}
+        <Slide isActive={currentSlide === 27}>
           <ArticleResume />
         </Slide>
 
-        <Slide isActive={currentSlide === 29}>
-          <TeamGroup1 />
-        </Slide>
-
-        <Slide isActive={currentSlide === 30}>
-          <TeamGroup2 />
-        </Slide>
-
-        <Slide isActive={currentSlide === 31}>
+        <Slide isActive={currentSlide === 28}>
           <Remerciements1 />
         </Slide>
 
-        <Slide isActive={currentSlide === 32}>
+        <Slide isActive={currentSlide === 29}>
           <Remerciements2 />
         </Slide>
 
-        <Slide isActive={currentSlide === 33}>
+        <Slide isActive={currentSlide === 30}>
+          <TeamGroup1 />
+        </Slide>
+
+        <Slide isActive={currentSlide === 31}>
+          <TeamGroup2 />
+        </Slide>
+
+        <Slide isActive={currentSlide === 32}>
           <Disclaimer />
         </Slide>
       </main>

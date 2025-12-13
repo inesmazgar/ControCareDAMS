@@ -17,7 +17,7 @@ export function DocumentationOuvrages() {
       editeur: "Presses de l'EHESP",
       annee: "2017",
       description: "Analyse des enjeux et perspectives de la santé connectée en France.",
-      lien: "https://www.presses.ehesp.fr/produit/la-sante-connectee/"
+      lien: "https://documentation.ehesp.fr/memoires/2017/mip/groupe%2024.pdf"
     },
     {
       titre: "E-santé et intelligence artificielle",
@@ -25,7 +25,7 @@ export function DocumentationOuvrages() {
       editeur: "Dalloz",
       annee: "2020",
       description: "Ouvrage sur les aspects juridiques et éthiques de l'IA dans la santé numérique.",
-      lien: "https://www.dalloz.fr/documentation/e-sante-intelligence-artificielle"
+      lien: "https://www.tandemhealth.ai/fr?utm_term=IA%20en%20m%C3%A9decine&utm_campaign=fr_ms_gs_gen_exact-phrase_20250704_x&utm_source=ms&utm_medium=cpc&hsa_acc=3580844898&hsa_cam=22751474573&hsa_grp=1187474467962254&hsa_ad=&hsa_src=o&hsa_tgt=kwd-74217579299911:loc-66&hsa_kw=IA%20en%20m%C3%A9decine&hsa_mt=p&hsa_net=adwords&hsa_ver=3&msclkid=59adaaf6cd6910bfd278c3cb953acb88"
     },
     {
       titre: "Médecine 4.0 : Le numérique au service de la santé",

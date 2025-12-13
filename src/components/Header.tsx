@@ -14,9 +14,7 @@ export function Header({ activeSection, setActiveSection }: HeaderProps) {
     { id: 'accueil', label: 'Accueil' },
     { id: 'statistiques', label: 'Statistiques' },
     { id: 'enjeux-transversaux', label: 'Argumentation' },
-    { id: 'chronologie-group1', label: 'Chronologie' },
-    { id: 'experts', label: 'Experts' },
-    { id: 'documentation-entretiens', label: 'Documentation' },
+    { id: 'documentation-articles1', label: 'Documentation' },
     { id: 'article', label: 'Article AMUE' },
     { id: 'team-group1', label: 'Équipe' },
   ];
@@ -31,28 +29,28 @@ export function Header({ activeSection, setActiveSection }: HeaderProps) {
   const isNavItemActive = (itemId: string) => {
     // Si la section active correspond exactement
     if (activeSection === itemId) return true;
-    
+
     // Vérifier les catégories
     if (itemId === 'arguments-favorables' && (
-      activeSection.startsWith('arguments-') || 
+      activeSection.startsWith('arguments-') ||
       activeSection.startsWith('sources-') ||
       activeSection === 'enjeux-transversaux'
     )) return true;
-    
+
     if (itemId === 'chronologie-group1' && activeSection.startsWith('chronologie-')) return true;
-    
-    if (itemId === 'documentation-entretiens' && (
+
+    if (itemId === 'documentation-articles1' && (
       activeSection.startsWith('documentation-') ||
       activeSection === 'illustrations-videos'
     )) return true;
-    
+
     if (itemId === 'team-group1' && (
       activeSection.startsWith('team-') ||
       activeSection.startsWith('remerciements')
     )) return true;
 
     if (itemId === 'experts' && activeSection.startsWith('methodologie-')) return true;
-    
+
     return false;
   };
 
@@ -73,11 +71,10 @@ export function Header({ activeSection, setActiveSection }: HeaderProps) {
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`text-sm transition-colors ${
-                  isNavItemActive(item.id)
-                    ? 'text-green-600'
-                    : 'text-gray-500 hover:text-green-600'
-                }`}
+                className={`text-sm transition-colors ${isNavItemActive(item.id)
+                  ? 'text-green-600'
+                  : 'text-gray-500 hover:text-green-600'
+                  }`}
               >
                 {item.label}
               </button>
@@ -100,11 +97,10 @@ export function Header({ activeSection, setActiveSection }: HeaderProps) {
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`block w-full text-left px-4 py-3 text-sm transition-colors ${
-                  isNavItemActive(item.id)
-                    ? 'text-green-600 bg-green-50'
-                    : 'text-gray-500 hover:text-green-600 hover:bg-green-50'
-                }`}
+                className={`block w-full text-left px-4 py-3 text-sm transition-colors ${isNavItemActive(item.id)
+                  ? 'text-green-600 bg-green-50'
+                  : 'text-gray-500 hover:text-green-600 hover:bg-green-50'
+                  }`}
               >
                 {item.label}
               </button>

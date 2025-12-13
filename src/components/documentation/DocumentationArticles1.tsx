@@ -8,28 +8,28 @@ export function DocumentationArticles1() {
       auteur: "AlShehri, Waleed S., et Yasser Y. Khojah",
       annee: "2025",
       description: "Étude de l'impact de la littératie en e-santé sur l'autogestion du diabète de type 2 en Arabie Saoudite.",
-      lien: "https://doi.org/10.2196/62819"
+      lien: "https://www.cureus.com/articles/381385-impact-of-e-health-literacy-on-diabetes-self-care-activities-among-people-with-type-2-diabetes-attending-primary-healthcare-centers-in-makkah-city-saudi-arabia-a-cross-sectional-study-2025#!/"
     },
     {
       titre: "Digital health technologies in swallowing care",
       auteur: "Alter, Isaac L., Carla Dias, et al.",
       annee: "2025",
       description: "Revue narrative sur les technologies de santé numérique pour les soins de déglutition.",
-      lien: "https://doi.org/10.1016/j.jcrc.2025.154956"
+      lien: "https://www.sciencedirect.com/science/article/abs/pii/S038581462500080X"
     },
     {
       titre: "Intention to Use Telemedicine Services during a Health Crisis",
       auteur: "Atmaja, Ferry Tema, et al.",
       annee: "2024",
       description: "Approche basée sur la théorie Motivation-Opportunité-Capacité pour analyser l'intention d'utilisation.",
-      lien: "https://doi.org/10.3390/healthcare12020238"
+      lien: "https://onlinelibrary.wiley.com/doi/abs/10.1111/ijcs.13044"
     },
     {
       titre: "Navigating the future of health care with AI-driven digital therapeutics",
       auteur: "Vasdev, Nupur, et al.",
       annee: "2024",
       description: "Exploration du futur des soins de santé avec les thérapeutiques numériques basées sur l'IA.",
-      lien: "https://doi.org/10.1038/s41746-024-01234-5"
+      lien: "https://www.sciencedirect.com/science/article/abs/pii/S1359644624002356"
     }
   ];
 

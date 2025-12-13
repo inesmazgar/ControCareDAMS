@@ -10,7 +10,8 @@ export function Experts() {
       email: null,
       phone: "0751534190",
       themes: ["Médecine générale", "Usages numériques", "Pratique quotidienne"],
-      citation: "La télémédecine est un outil précieux, mais elle ne remplacera jamais le contact humain essentiel à la relation médecin-patient."
+      citation: "Ça ne peut pas tout gérer, la téléconsultation, effectivement, [...], parce qu’il y a une partie d’examen clinique à faire qu’on ne peut pas faire à distance.",
+      audio: "/audio/mira-ballout.mp3"
     },
     {
       nom: "Anne-Sophie Cases",
@@ -19,16 +20,18 @@ export function Experts() {
       email: "anne-sophie.cases@umontpellier.fr",
       phone: null,
       themes: ["Sciences de gestion", "E-santé", "Recherche"],
-      citation: "L'empowerment du patient connecté transforme radicalement la dynamique de la relation de soins et ouvre de nouvelles perspectives."
+      citation: "Un des risques, c’est de considérer qu’en fait, le premier niveau de soin ne nécessite plus d’humain.",
+      audio: "/audio/anne-sophie-cases.mp3"
     },
     {
-      nom: "Dr Gregoire Mercier",
+      nom: "Dr Grégoire Mercier",
       role: "Sciences des données de santé",
       institution: "Unité d'évaluation économique - CHU Montpellier",
       email: "g-mercier@chu-montpellier.fr",
       phone: null,
       themes: ["Recherche & Données de Santé", "Évaluation économique", "Sciences de la santé"],
-      citation: "L'évaluation économique de la télémédecine doit prendre en compte non seulement les coûts directs, mais aussi les bénéfices sociétaux à long terme."
+      citation: "Il faut réussir à ce que les patients soient de plus en plus pris en charge en dehors des hôpitaux.",
+      audio: "/audio/gregoire-mercier.mp3"
     }
   ];
 
@@ -39,7 +42,7 @@ export function Experts() {
           <User className="text-gray-600 mr-4" size={48} />
           <h1 className="text-gray-900 text-4xl font-bold">Les Experts</h1>
         </div>
-        
+
         <p className="text-gray-600 text-center mb-12 max-w-3xl mx-auto text-lg">
           Trois experts représentant différentes perspectives sur la controverse.
         </p>
@@ -51,7 +54,7 @@ export function Experts() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="p-8 bg-white border-2 border-gray-300 rounded-2xl hover:border-gray-500 hover:shadow-xl transition-all"
+              className="p-8 bg-white border-2 border-gray-300 rounded-2xl hover:border-gray-500 hover:shadow-xl transition-all h-full flex flex-col"
             >
               <h3 className="text-gray-900 mb-2 text-xl font-semibold text-center">{expert.nom}</h3>
               <p className="text-gray-600 mb-1 text-center text-sm">{expert.role}</p>
@@ -59,7 +62,7 @@ export function Experts() {
                 <Building2 size={14} className="mr-1" />
                 <span className="text-xs text-center">{expert.institution}</span>
               </div>
-              
+
               {/* Contact info */}
               <div className="space-y-1 mb-4 text-center">
                 {expert.email && (
@@ -94,6 +97,14 @@ export function Experts() {
                     "{expert.citation}"
                   </p>
                 </div>
+              </div>
+
+              {/* Audio Player */}
+              <div className="mt-auto pt-6">
+                <audio controls className="w-full h-8">
+                  <source src={expert.audio} type="audio/mpeg" />
+                  Votre navigateur ne supporte pas l'élément audio.
+                </audio>
               </div>
             </motion.div>
           ))}

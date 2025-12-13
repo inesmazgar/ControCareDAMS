@@ -4,7 +4,7 @@ export function Documentation() {
   const documentation = {
     enregistrements: [
       {
-        titre: "Entretien avec Mira Ballout",
+        titre: "Entretien avec Dr Mira Ballout",
         date: "15 octobre 2024",
         duree: "1h15",
         description: "Discussion sur la pratique de la télémédecine et l'accessibilité aux soins"
@@ -195,7 +195,7 @@ export function Documentation() {
     ],
     entretiens: [
       {
-        titre: "Entretien avec Mira Ballout",
+        titre: "Entretien avec Dr Mira Ballout",
         date: "15 octobre 2024",
         duree: "1h15",
         lieu: "Visioconférence",

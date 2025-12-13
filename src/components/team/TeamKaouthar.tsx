@@ -10,7 +10,7 @@ export function TeamKaouthar() {
         "Gestion d'équipe",
         "Organisation du travail"
       ]}
-      email="kaoutar.elfenni@et.umontpellier.fr"
+      email="kaoutar.elfenni@etu.umontpellier.fr"
       color="green"
     />
   );

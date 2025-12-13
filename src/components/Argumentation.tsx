@@ -79,6 +79,31 @@ export function Argumentation() {
           </p>
         </div>
 
+
+        {/* Enjeux transversaux */}
+        <section className="mb-4">
+          <div className="flex items-center mb-4">
+            <AlertCircle className="text-gray-600 mr-3" size={24} />
+            <h2 className="text-gray-900 text-xl">Enjeux transversaux</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {debatPoints.enjeux.map((enjeu, index) => (
+                <div key={index} className="p-4 border border-gray-200 rounded-lg bg-white">
+                  <h3 className="text-gray-900 mb-2 text-sm font-semibold">{enjeu.titre}</h3>
+                  <p className="text-xs text-gray-600 mb-3">{enjeu.description}</p>
+                  <div className="flex flex-wrap gap-1">
+                    {enjeu.sources.map((source, i) => (
+                        <span key={i} className="text-xs px-2 py-0.5 bg-gray-100 text-gray-700 rounded-full">
+                      {source}
+                    </span>
+                    ))}
+                  </div>
+                </div>
+            ))}
+          </div>
+        </section>
+
         {/* Arguments favorables */}
         <section className="mb-8">
           <div className="flex items-center mb-4">
@@ -127,29 +152,6 @@ export function Argumentation() {
           </div>
         </section>
 
-        {/* Enjeux transversaux */}
-        <section className="mb-4">
-          <div className="flex items-center mb-4">
-            <AlertCircle className="text-gray-600 mr-3" size={24} />
-            <h2 className="text-gray-900 text-xl">Enjeux transversaux</h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {debatPoints.enjeux.map((enjeu, index) => (
-              <div key={index} className="p-4 border border-gray-200 rounded-lg bg-white">
-                <h3 className="text-gray-900 mb-2 text-sm font-semibold">{enjeu.titre}</h3>
-                <p className="text-xs text-gray-600 mb-3">{enjeu.description}</p>
-                <div className="flex flex-wrap gap-1">
-                  {enjeu.sources.map((source, i) => (
-                    <span key={i} className="text-xs px-2 py-0.5 bg-gray-100 text-gray-700 rounded-full">
-                      {source}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
 
         <div className="mt-16 p-8 bg-gray-50 rounded-lg">
           <h3 className="text-gray-900 mb-4">Synthèse</h3>

@@ -20,7 +20,7 @@ export function TeamGroup1() {
         'Gestion d\'équipe',
         'Organisation du travail',
       ],
-      email: 'kaoutar.elfenni@et.umontpellier.fr',
+      email: 'kaoutar.elfenni@etu.umontpellier.fr',
     },
     {
       nom: 'Ines Mazgar',
@@ -30,7 +30,7 @@ export function TeamGroup1() {
         'Développement web',
         'Expérience utilisateur',
       ],
-      email: 'ines.mazgar@et.umontpellier.fr',
+      email: 'ines.mazgar@etu.umontpellier.fr',
     },
   ];
 

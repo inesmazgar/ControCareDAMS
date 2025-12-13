@@ -10,7 +10,7 @@ export function TeamInes() {
         "Développement web",
         "Expérience utilisateur"
       ]}
-      email="ines.mazgar@et.umontpellier.fr"
+      email="ines.mazgar@etu.umontpellier.fr"
       color="blue"
     />
   );

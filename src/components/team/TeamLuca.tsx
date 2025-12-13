@@ -10,7 +10,7 @@ export function TeamLuca() {
         "Rédaction contenus",
         "Compilation des sources"
       ]}
-      email="luca.figlie@et.umontpellier.fr"
+      email="luca.figlie@etu.umontpellier.fr"
       color="indigo"
     />
   );

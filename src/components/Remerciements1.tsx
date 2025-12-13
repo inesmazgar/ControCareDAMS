@@ -5,7 +5,7 @@ export function Remerciements1() {
   const remerciements = [
     {
       titre: "Les experts",
-      description: "Mira Ballout, Anne-Sophie Cases et Dr Grégoire Mercier pour leurs témoignages authentiques et analyses éclairées.",
+      description: "Dr Mira Ballout, Anne-Sophie Cases et Dr Grégoire Mercier pour leurs témoignages authentiques et analyses éclairées.",
     }
   ];
 

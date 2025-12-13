@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 export function Experts() {
   const experts = [
     {
-      nom: "Mira Ballout",
+      nom: "Dr Mira Ballout",
       role: "Médecin généraliste",
       institution: "Spécialiste des usages numériques",
       email: null,

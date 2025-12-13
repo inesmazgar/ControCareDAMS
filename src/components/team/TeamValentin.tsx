@@ -10,7 +10,7 @@ export function TeamValentin() {
         "Analyse des arguments",
         "Recherche documentaire"
       ]}
-      email="valentin.blanc@et.umontpellier.fr"
+      email="valentin.blanc02@etu.umontpellier.fr"
       color="orange"
     />
   );

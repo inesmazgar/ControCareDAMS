@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 export function DocumentationEntretiens() {
   const entretiens = [
     {
-      titre: "Entretien avec Mira Ballout",
+      titre: "Entretien avec Dr Mira Ballout",
       date: "15 octobre 2024",
       duree: "1h15",
       description: "Discussion sur la pratique de la télémédecine et l'accessibilité aux soins.",

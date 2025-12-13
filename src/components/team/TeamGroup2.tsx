@@ -10,7 +10,7 @@ export function TeamGroup2() {
         'Développement web',
         'Intégration',
       ],
-      email: 'hugo.saulig@et.umontpellier.fr',
+      email: 'hugo.saulig@etu.umontpellier.fr',
     },
     {
       nom: 'Valentin Blanc',
@@ -20,7 +20,7 @@ export function TeamGroup2() {
         'Analyse des arguments',
         'Recherche documentaire',
       ],
-      email: 'valentin.blanc@et.umontpellier.fr',
+      email: 'valentin.blanc02@etu.umontpellier.fr',
     },
     {
       nom: 'Luca Figlie',
@@ -30,7 +30,7 @@ export function TeamGroup2() {
         'Rédaction contenus',
         'Compilation des sources',
       ],
-      email: 'luca.figlie@et.umontpellier.fr',
+      email: 'luca.figlie@etu.umontpellier.fr',
     },
   ];
 

@@ -8,28 +8,28 @@ export function DocumentationRapports() {
       organisme: "Ministère de la Santé",
       annee: "2023",
       description: "Évaluation de l'état des lieux de la télémédecine et recommandations pour son développement.",
-      lien: "https://www.example.com/rapport1"
+      lien: "https://sante.gouv.fr/IMG/pdf/Rapport_final_Telemedecine.pdf"
     },
     {
       titre: "Évaluation économique de la télémédecine",
       organisme: "Haute Autorité de Santé (HAS)",
       annee: "2022",
       description: "Analyse coûts-bénéfices de l'intégration de la télémédecine dans le système de santé.",
-      lien: "https://www.example.com/rapport2"
+      lien: "https://www.has-sante.fr/jcms/c_1622477/fr/efficience-de-la-telemedecine-etat-des-lieux-de-la-litterature-internationale-et-cadre-d-evaluation"
     },
     {
       titre: "Cybersécurité et données de santé",
       organisme: "ANSSI",
       annee: "2023",
       description: "Rapport sur les risques et recommandations en matière de protection des données médicales.",
-      lien: "https://www.example.com/rapport3"
+      lien: "https://cyber.gouv.fr/"
     },
     {
       titre: "Baromètre de la fracture numérique en santé",
       organisme: "Agence du Numérique en Santé",
-      annee: "2024",
+      annee: "2023",
       description: "Étude des inégalités d'accès aux technologies de santé numériques.",
-      lien: "https://www.example.com/rapport4"
+      lien: "https://esante.gouv.fr/rapport-dactivite-2023"
     }
   ];
 

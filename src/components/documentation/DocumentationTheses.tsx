@@ -8,21 +8,21 @@ export function DocumentationTheses() {
       auteur: "Lourdais, Chloé",
       annee: "2022",
       description: "Recherche sur l'optimisation des interfaces utilisateur pour les plateformes de télémédecine.",
-      lien: "https://theses.fr/2022TECH1234"
+      lien: "https://theses.hal.science/tel-04128753"
     },
     {
       titre: "E-santé et milieu carcéral",
       auteur: "Py, Ulysse",
       annee: "2024",
       description: "Étude de l'implémentation et des enjeux de la e-santé dans les établissements pénitentiaires.",
-      lien: "https://theses.fr/2024UPAS5678"
+      lien: "https://theses.fr/2024LORR0275"
     },
     {
       titre: "Appropriation de la plateforme de télépathologie I-PATH-INCTR",
       auteur: "Sossou, Komlanvi Etienne",
       annee: "2023",
       description: "Analyse de l'appropriation d'une plateforme de télépathologie dans un contexte africain.",
-      lien: "https://theses.fr/2023LOME9012"
+      lien: "https://theses.hal.science/tel-04876097"
     },
     {
       titre: "Intelligence artificielle et diagnostic médical à distance",

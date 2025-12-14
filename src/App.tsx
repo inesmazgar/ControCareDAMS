@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { ModalProvider } from "./context/ModalContext";
 import { Hero } from "./components/Hero";
 import { Statistics } from "./components/Statistics";
 import { ArgumentsFavorables } from "./components/ArgumentsFavorables";
@@ -150,160 +151,162 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen overflow-hidden bg-white">
-      <Header
-        activeSection={activeSection}
-        setActiveSection={handleSectionChange}
-      />
+    <ModalProvider>
+      <div className="h-screen overflow-hidden bg-white">
+        <Header
+          activeSection={activeSection}
+          setActiveSection={handleSectionChange}
+        />
 
-      <main className="h-full">
-        <Slide isActive={currentSlide === 0}>
-          <Hero setActiveSection={handleSectionChange} />
-        </Slide>
+        <main className="h-full">
+          <Slide isActive={currentSlide === 0}>
+            <Hero setActiveSection={handleSectionChange} />
+          </Slide>
 
-        <Slide isActive={currentSlide === 1}>
-          <Statistics setActiveSection={handleSectionChange} />
-        </Slide>
+          <Slide isActive={currentSlide === 1}>
+            <Statistics setActiveSection={handleSectionChange} />
+          </Slide>
 
-        {/* Experts & Méthodologie */}
-        <Slide isActive={currentSlide === 2}>
-          <Experts />
-        </Slide>
+          {/* Experts & Méthodologie */}
+          <Slide isActive={currentSlide === 2}>
+            <Experts />
+          </Slide>
 
-        <Slide isActive={currentSlide === 3}>
-          <MethodologieAnalyse />
-        </Slide>
+          <Slide isActive={currentSlide === 3}>
+            <MethodologieAnalyse />
+          </Slide>
 
-        <Slide isActive={currentSlide === 4}>
-          <MethodologieStep1 />
-        </Slide>
+          <Slide isActive={currentSlide === 4}>
+            <MethodologieStep1 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 5}>
-          <MethodologieStep2 />
-        </Slide>
+          <Slide isActive={currentSlide === 5}>
+            <MethodologieStep2 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 6}>
-          <MethodologieStep3 />
-        </Slide>
+          <Slide isActive={currentSlide === 6}>
+            <MethodologieStep3 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 7}>
-          <MethodologieEntretiensEthique />
-        </Slide>
+          <Slide isActive={currentSlide === 7}>
+            <MethodologieEntretiensEthique />
+          </Slide>
 
-        {/* Chronologie */}
-        <Slide isActive={currentSlide === 8}>
-          <TimelineGroup1 />
-        </Slide>
+          {/* Chronologie */}
+          <Slide isActive={currentSlide === 8}>
+            <TimelineGroup1 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 9}>
-          <TimelineGroup2 />
-        </Slide>
+          <Slide isActive={currentSlide === 9}>
+            <TimelineGroup2 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 10}>
-          <TimelineGroup3 />
-        </Slide>
+          <Slide isActive={currentSlide === 10}>
+            <TimelineGroup3 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 11}>
-          <TimelineGroup4 />
-        </Slide>
+          <Slide isActive={currentSlide === 11}>
+            <TimelineGroup4 />
+          </Slide>
 
-        {/* Argumentation */}
-        <Slide isActive={currentSlide === 12}>
-          <EnjeuxTransversaux />
-        </Slide>
+          {/* Argumentation */}
+          <Slide isActive={currentSlide === 12}>
+            <EnjeuxTransversaux />
+          </Slide>
 
-        <Slide isActive={currentSlide === 13}>
-          <ArgumentsFavorables />
-        </Slide>
+          <Slide isActive={currentSlide === 13}>
+            <ArgumentsFavorables />
+          </Slide>
 
-        <Slide isActive={currentSlide === 14}>
-          <SourcesContinuite />
-        </Slide>
+          <Slide isActive={currentSlide === 14}>
+            <SourcesContinuite />
+          </Slide>
 
-        <Slide isActive={currentSlide === 15}>
-          <SourcesCouts />
-        </Slide>
+          <Slide isActive={currentSlide === 15}>
+            <SourcesCouts />
+          </Slide>
 
-        <Slide isActive={currentSlide === 16}>
-          <ArgumentsDefavorables />
-        </Slide>
+          <Slide isActive={currentSlide === 16}>
+            <ArgumentsDefavorables />
+          </Slide>
 
-        <Slide isActive={currentSlide === 17}>
-          <SourcesDonnees />
-        </Slide>
+          <Slide isActive={currentSlide === 17}>
+            <SourcesDonnees />
+          </Slide>
 
-        <Slide isActive={currentSlide === 18}>
-          <SourcesDeshumanisation />
-        </Slide>
+          <Slide isActive={currentSlide === 18}>
+            <SourcesDeshumanisation />
+          </Slide>
 
-        {/* Documentation */}
-        <Slide isActive={currentSlide === 19}>
-          <DocumentationArticles1 />
-        </Slide>
+          {/* Documentation */}
+          <Slide isActive={currentSlide === 19}>
+            <DocumentationArticles1 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 20}>
-          <DocumentationArticles2 />
-        </Slide>
+          <Slide isActive={currentSlide === 20}>
+            <DocumentationArticles2 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 21}>
-          <DocumentationOuvrages />
-        </Slide>
+          <Slide isActive={currentSlide === 21}>
+            <DocumentationOuvrages />
+          </Slide>
 
-        <Slide isActive={currentSlide === 22}>
-          <DocumentationRapports />
-        </Slide>
+          <Slide isActive={currentSlide === 22}>
+            <DocumentationRapports />
+          </Slide>
 
-        <Slide isActive={currentSlide === 23}>
-          <DocumentationTheses />
-        </Slide>
+          <Slide isActive={currentSlide === 23}>
+            <DocumentationTheses />
+          </Slide>
 
-        <Slide isActive={currentSlide === 24}>
-          <DocumentationSitesWeb />
-        </Slide>
+          <Slide isActive={currentSlide === 24}>
+            <DocumentationSitesWeb />
+          </Slide>
 
-        <Slide isActive={currentSlide === 25}>
-          <DocumentationSitesWeb2 />
-        </Slide>
+          <Slide isActive={currentSlide === 25}>
+            <DocumentationSitesWeb2 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 26}>
-          <IllustrationsVideos />
-        </Slide>
+          <Slide isActive={currentSlide === 26}>
+            <IllustrationsVideos />
+          </Slide>
 
-        {/* AMUE + Conclusion -> Equipe */}
-        <Slide isActive={currentSlide === 27}>
-          <ArticleResume />
-        </Slide>
+          {/* AMUE + Conclusion -> Equipe */}
+          <Slide isActive={currentSlide === 27}>
+            <ArticleResume />
+          </Slide>
 
-        <Slide isActive={currentSlide === 28}>
-          <Remerciements1 />
-        </Slide>
+          <Slide isActive={currentSlide === 28}>
+            <Remerciements1 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 29}>
-          <Remerciements2 />
-        </Slide>
+          <Slide isActive={currentSlide === 29}>
+            <Remerciements2 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 30}>
-          <TeamGroup1 />
-        </Slide>
+          <Slide isActive={currentSlide === 30}>
+            <TeamGroup1 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 31}>
-          <TeamGroup2 />
-        </Slide>
+          <Slide isActive={currentSlide === 31}>
+            <TeamGroup2 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 32}>
-          <Disclaimer />
-        </Slide>
-      </main>
+          <Slide isActive={currentSlide === 32}>
+            <Disclaimer />
+          </Slide>
+        </main>
 
-      {/* Navigation par flèches */}
-      <SlideNavigation
-        currentSlide={currentSlide}
-        totalSlides={slides.length}
-        onNext={handleNext}
-        onPrevious={handlePrevious}
-      />
+        {/* Navigation par flèches */}
+        <SlideNavigation
+          currentSlide={currentSlide}
+          totalSlides={slides.length}
+          onNext={handleNext}
+          onPrevious={handlePrevious}
+        />
 
-      <Footer onDisclaimerClick={() => setCurrentSlide(slides.length - 1)} />
-    </div>
+        <Footer onDisclaimerClick={() => setCurrentSlide(slides.length - 1)} />
+      </div>
+    </ModalProvider>
   );
 }

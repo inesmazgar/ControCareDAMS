@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
-import { XCircle, X } from 'lucide-react';
+import { XCircle, X, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useModalContext } from "../context/ModalContext";
 
-export function ArgumentsDefavorables() {
+interface ArgumentsDefavorablesProps {
+  setActiveSection: (section: string, sourceId?: string) => void;
+}
+
+export function ArgumentsDefavorables({ setActiveSection }: ArgumentsDefavorablesProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const { setModalOpen } = useModalContext();
 
@@ -15,26 +19,34 @@ export function ArgumentsDefavorables() {
     {
       id: "1",
       titre: "Fracture numérique",
-      description: "Exclusion des personnes âgées, précaires ou non équipées.",
-      details: "L'illectronisme touche près de 17% de la population française. Les personnes âgées, précaires ou vivant dans les zones blanches risquent d'être exclues de ce nouveau parcours de soins, renforçant ainsi les inégalités sociales de santé déjà existantes."
+      description: "Exclusion des personnes âgées, précaires ou non équipées (ANS, 2023).",
+      details: "L'illectronisme touche près de 17% de la population française. Les personnes âgées, précaires ou vivant dans les zones blanches risquent d'être exclues de ce nouveau parcours de soins, renforçant ainsi les inégalités sociales de santé déjà existantes.",
+      source: "ANS, 2023",
+      linkTarget: "documentation-rapports"
     },
     {
       id: "2",
       titre: "Qualité du diagnostic",
-      description: "Impossibilité d'examen clinique complet et risque d'erreurs.",
-      details: "L'absence d'examen clinique physique (palpation, auscultation directe) peut limiter la précision du diagnostic. Certains signes cliniques subtils peuvent échapper à la caméra, augmentant le risque d'erreur diagnostique ou de retard de prise en charge."
+      description: "Impossibilité d'examen clinique complet et risque d'erreurs (HAS, 2022).",
+      details: "L'absence d'examen clinique physique (palpation, auscultation directe) peut limiter la précision du diagnostic. Certains signes cliniques subtils peuvent échapper à la caméra, augmentant le risque d'erreur diagnostique ou de retard de prise en charge.",
+      source: "HAS, 2022",
+      linkTarget: "documentation-rapports"
     },
     {
       id: "3",
       titre: "Protection des données",
-      description: "Risques de piratage et de violation de la confidentialité.",
-      details: "La multiplication des plateformes et des objets connectés augmente la surface d'attaque pour les cybercriminels. Les données de santé, hautement sensibles, sont des cibles privilégiées. Le risque de fuite ou de vol de données médicales est une préoccupation majeure."
+      description: "Risques de piratage et de violation de la confidentialité (ANSSI, 2023).",
+      details: "La multiplication des plateformes et des objets connectés augmente la surface d'attaque pour les cybercriminels. Les données de santé, hautement sensibles, sont des cibles privilégiées. Le risque de fuite ou de vol de données médicales est une préoccupation majeure.",
+      source: "ANSSI, 2023",
+      linkTarget: "documentation-rapports"
     },
     {
       id: "4",
       titre: "Déshumanisation",
-      description: "Perte du contact humain et de la relation de confiance.",
-      details: "La relation médecin-patient repose sur la confiance et l'empathie, qui passent aussi par le contact non-verbal et la présence physique. L'écran peut créer une distance émotionnelle, rendant l'annonce de diagnostics graves ou l'accompagnement psychologique plus difficile."
+      description: "Perte du contact humain et de la relation de confiance (Vallancien, 2015).",
+      details: "La relation médecin-patient repose sur la confiance et l'empathie, qui passent aussi par le contact non-verbal et la présence physique. L'écran peut créer une distance émotionnelle, rendant l'annonce de diagnostics graves ou l'accompagnement psychologique plus difficile.",
+      source: "Vallancien, 2015",
+      linkTarget: "documentation-ouvrages"
     }
   ];
 
@@ -97,6 +109,20 @@ export function ArgumentsDefavorables() {
                     <p className="text-gray-600 leading-relaxed">
                       {item.details}
                     </p>
+
+                    <div className="pt-4 flex justify-end">
+                      <button
+                        onClick={() => {
+                          setSelectedId(null);
+                          const sourceKey = item.source.split(',')[0].trim();
+                          setActiveSection(item.linkTarget, sourceKey);
+                        }}
+                        className="flex items-center text-red-700 hover:text-red-800 font-medium transition-colors text-sm"
+                      >
+                        Voir la source ({item.source})
+                        <ArrowRight size={16} className="ml-2" />
+                      </button>
+                    </div>
                   </motion.div>
                 </motion.div>
               ))}

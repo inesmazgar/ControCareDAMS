@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ModalProvider } from "./context/ModalContext";
+import { ArrowLeft } from "lucide-react";
 import { Hero } from "./components/Hero";
 import { Statistics } from "./components/Statistics";
 import { ArgumentsFavorables } from "./components/ArgumentsFavorables";
@@ -21,6 +22,7 @@ import { MethodologieStep3 } from "./components/methodologie/MethodologieStep3";
 import { MethodologieEntretiensEthique } from "./components/methodologie/MethodologieEntretiensEthique";
 import { DocumentationArticles1 } from "./components/documentation/DocumentationArticles1";
 import { DocumentationArticles2 } from "./components/documentation/DocumentationArticles2";
+import { DocumentationArticles3 } from "./components/documentation/DocumentationArticles3";
 import { DocumentationOuvrages } from "./components/documentation/DocumentationOuvrages";
 import { DocumentationRapports } from "./components/documentation/DocumentationRapports";
 import { DocumentationTheses } from "./components/documentation/DocumentationTheses";
@@ -41,12 +43,13 @@ import { SlideNavigation } from "./components/SlideNavigation";
 export default function App() {
   const [activeSection, setActiveSection] = useState("accueil");
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [previousSection, setPreviousSection] = useState<string | null>(null);
+  const [highlightedSourceId, setHighlightedSourceId] = useState<string | null>(null);
 
   // Mettre à jour le titre de la page et le favicon
   useEffect(() => {
     document.title = "ControCare : Controverse de Télémédecine";
-
-    // Créer et ajouter le favicon SVG
+    // ... favicon logic
     const link = document.querySelector("link[rel*='icon']") as HTMLLinkElement || document.createElement('link');
     link.type = 'image/svg+xml';
     link.rel = 'icon';
@@ -76,15 +79,14 @@ export default function App() {
     // Argumentation
     "enjeux-transversaux",
     "arguments-favorables",
-    "sources-continuite",
-    "sources-couts",
+
     "arguments-defavorables",
-    "sources-donnees",
-    "sources-deshumanisation",
+
 
     // Documentation
     "documentation-articles1",
     "documentation-articles2",
+    "documentation-articles3",
     "documentation-ouvrages",
     "documentation-rapports",
     "documentation-theses",
@@ -142,11 +144,39 @@ export default function App() {
     };
   }, []);
 
-  // Gérer les clics depuis le Header
-  const handleSectionChange = (section: string) => {
+  // Gérer les clics depuis le Header et la navigation interne
+  const handleNavigation = (section: string, sourceId?: string) => {
     const slideIndex = slides.indexOf(section);
     if (slideIndex !== -1) {
+      // If we are navigating with a sourceId, it likely means we are jumping to a source.
+      // Save current position ONLY if we are not already in a "jumped" state (to avoid overwriting the original source)
+      // or if we decide to overwrite it. A simple stack is better, but one level is enough for "Back to text".
+      if (sourceId) {
+        setPreviousSection(activeSection);
+      } else {
+        // Normal navigation usually clears history? 
+        // Or should we keep it if the user manually navigates?
+        // Let's clear it if they navigate via menu to keep UI clean, 
+        // unless they click "Back".
+        setPreviousSection(null);
+      }
+
       setCurrentSlide(slideIndex);
+
+      if (sourceId) {
+        setHighlightedSourceId(sourceId);
+        setTimeout(() => setHighlightedSourceId(null), 3000);
+      }
+    }
+  };
+
+  const handleBack = () => {
+    if (previousSection) {
+      const slideIndex = slides.indexOf(previousSection);
+      if (slideIndex !== -1) {
+        setCurrentSlide(slideIndex);
+        setPreviousSection(null); // Clear history after going back
+      }
     }
   };
 
@@ -155,144 +185,134 @@ export default function App() {
       <div className="h-screen overflow-hidden bg-white">
         <Header
           activeSection={activeSection}
-          setActiveSection={handleSectionChange}
+          setActiveSection={handleNavigation}
         />
 
         <main className="h-full">
-          <Slide isActive={currentSlide === 0}>
-            <Hero setActiveSection={handleSectionChange} />
+          <Slide isActive={activeSection === "accueil"}>
+            <Hero setActiveSection={handleNavigation} />
           </Slide>
 
-          <Slide isActive={currentSlide === 1}>
-            <Statistics setActiveSection={handleSectionChange} />
+          <Slide isActive={activeSection === "statistiques"}>
+            <Statistics setActiveSection={handleNavigation} />
           </Slide>
 
           {/* Experts & Méthodologie */}
-          <Slide isActive={currentSlide === 2}>
+          <Slide isActive={activeSection === "experts"}>
             <Experts />
           </Slide>
 
-          <Slide isActive={currentSlide === 3}>
+          <Slide isActive={activeSection === "methodologie-analyse"}>
             <MethodologieAnalyse />
           </Slide>
 
-          <Slide isActive={currentSlide === 4}>
+          <Slide isActive={activeSection === "methodologie-step1"}>
             <MethodologieStep1 />
           </Slide>
 
-          <Slide isActive={currentSlide === 5}>
+          <Slide isActive={activeSection === "methodologie-step2"}>
             <MethodologieStep2 />
           </Slide>
 
-          <Slide isActive={currentSlide === 6}>
+          <Slide isActive={activeSection === "methodologie-step3"}>
             <MethodologieStep3 />
           </Slide>
 
-          <Slide isActive={currentSlide === 7}>
+          <Slide isActive={activeSection === "methodologie-entretiens-ethique"}>
             <MethodologieEntretiensEthique />
           </Slide>
 
           {/* Chronologie */}
-          <Slide isActive={currentSlide === 8}>
+          <Slide isActive={activeSection === "chronologie-group1"}>
             <TimelineGroup1 />
           </Slide>
 
-          <Slide isActive={currentSlide === 9}>
+          <Slide isActive={activeSection === "chronologie-group2"}>
             <TimelineGroup2 />
           </Slide>
 
-          <Slide isActive={currentSlide === 10}>
+          <Slide isActive={activeSection === "chronologie-group3"}>
             <TimelineGroup3 />
           </Slide>
 
-          <Slide isActive={currentSlide === 11}>
+          <Slide isActive={activeSection === "chronologie-group4"}>
             <TimelineGroup4 />
           </Slide>
 
           {/* Argumentation */}
-          <Slide isActive={currentSlide === 12}>
-            <EnjeuxTransversaux />
+          <Slide isActive={activeSection === "enjeux-transversaux"}>
+            <EnjeuxTransversaux setActiveSection={handleNavigation} />
           </Slide>
 
-          <Slide isActive={currentSlide === 13}>
-            <ArgumentsFavorables />
+          <Slide isActive={activeSection === "arguments-favorables"}>
+            <ArgumentsFavorables setActiveSection={handleNavigation} />
           </Slide>
 
-          <Slide isActive={currentSlide === 14}>
-            <SourcesContinuite />
+          <Slide isActive={activeSection === "arguments-defavorables"}>
+            <ArgumentsDefavorables setActiveSection={handleNavigation} />
           </Slide>
 
-          <Slide isActive={currentSlide === 15}>
-            <SourcesCouts />
-          </Slide>
-
-          <Slide isActive={currentSlide === 16}>
-            <ArgumentsDefavorables />
-          </Slide>
-
-          <Slide isActive={currentSlide === 17}>
-            <SourcesDonnees />
-          </Slide>
-
-          <Slide isActive={currentSlide === 18}>
-            <SourcesDeshumanisation />
-          </Slide>
 
           {/* Documentation */}
-          <Slide isActive={currentSlide === 19}>
-            <DocumentationArticles1 />
+          <Slide isActive={activeSection === "documentation-articles1"}>
+            <DocumentationArticles1 highlightedSourceId={highlightedSourceId} />
           </Slide>
 
-          <Slide isActive={currentSlide === 20}>
-            <DocumentationArticles2 />
+          <Slide isActive={activeSection === "documentation-articles2"}>
+            <DocumentationArticles2 highlightedSourceId={highlightedSourceId} />
           </Slide>
 
-          <Slide isActive={currentSlide === 21}>
-            <DocumentationOuvrages />
+          <Slide isActive={activeSection === "documentation-articles3"}>
+            <DocumentationArticles3 highlightedSourceId={highlightedSourceId} />
           </Slide>
 
-          <Slide isActive={currentSlide === 22}>
-            <DocumentationRapports />
+          <Slide isActive={activeSection === "documentation-ouvrages"}>
+            <DocumentationOuvrages highlightedSourceId={highlightedSourceId} />
           </Slide>
 
-          <Slide isActive={currentSlide === 23}>
+          <Slide isActive={activeSection === "documentation-rapports"}>
+            <DocumentationRapports highlightedSourceId={highlightedSourceId} />
+          </Slide>
+
+          <Slide isActive={activeSection === "documentation-theses"}>
             <DocumentationTheses />
           </Slide>
 
-          <Slide isActive={currentSlide === 24}>
-            <DocumentationSitesWeb />
+          <Slide isActive={activeSection === "documentation-sites-web"}>
+            <DocumentationSitesWeb highlightedSourceId={highlightedSourceId} />
           </Slide>
 
-          <Slide isActive={currentSlide === 25}>
+          <Slide isActive={activeSection === "documentation-sites-web2"}>
             <DocumentationSitesWeb2 />
           </Slide>
 
-          <Slide isActive={currentSlide === 26}>
+          <Slide isActive={activeSection === "illustrations-videos"}>
             <IllustrationsVideos />
           </Slide>
 
           {/* AMUE + Conclusion -> Equipe */}
-          <Slide isActive={currentSlide === 27}>
+          {/* AMUE + Conclusion -> Equipe */}
+          <Slide isActive={activeSection === "article"}>
             <ArticleResume />
           </Slide>
 
-          <Slide isActive={currentSlide === 28}>
+          <Slide isActive={activeSection === "remerciements1"}>
             <Remerciements1 />
           </Slide>
 
-          <Slide isActive={currentSlide === 29}>
+          <Slide isActive={activeSection === "remerciements2"}>
             <Remerciements2 />
           </Slide>
 
-          <Slide isActive={currentSlide === 30}>
+          <Slide isActive={activeSection === "team-group1"}>
             <TeamGroup1 />
           </Slide>
 
-          <Slide isActive={currentSlide === 31}>
+          <Slide isActive={activeSection === "team-group2"}>
             <TeamGroup2 />
           </Slide>
 
-          <Slide isActive={currentSlide === 32}>
+          <Slide isActive={activeSection === "disclaimer"}>
             <Disclaimer />
           </Slide>
         </main>
@@ -304,6 +324,19 @@ export default function App() {
           onNext={handleNext}
           onPrevious={handlePrevious}
         />
+
+        {/* Bouton Retour (si navigation croisée) */}
+        {previousSection && (
+          <div className="fixed bottom-24 right-8 z-50">
+            <button
+              onClick={handleBack}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold shadow-lg transition-all flex items-center gap-2 animate-bounce-subtle"
+            >
+              <ArrowLeft size={20} />
+              Retour à la lecture
+            </button>
+          </div>
+        )}
 
         <Footer onDisclaimerClick={() => setCurrentSlide(slides.length - 1)} />
       </div>

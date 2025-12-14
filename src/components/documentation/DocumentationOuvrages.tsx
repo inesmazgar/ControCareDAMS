@@ -1,7 +1,11 @@
 import { BookOpen, ExternalLink } from 'lucide-react';
 import { motion } from 'motion/react';
 
-export function DocumentationOuvrages() {
+interface DocumentationOuvragesProps {
+  highlightedSourceId?: string | null;
+}
+
+export function DocumentationOuvrages({ highlightedSourceId }: DocumentationOuvragesProps) {
   const ouvrages = [
     {
       titre: "La médecine sans médecin ? Le numérique au service du malade",
@@ -44,7 +48,7 @@ export function DocumentationOuvrages() {
           <BookOpen className="text-red-600 mr-4" size={48} />
           <h1 className="text-gray-900 text-4xl font-bold">Ouvrages</h1>
         </div>
-        
+
         <p className="text-gray-600 text-center mb-8 max-w-3xl mx-auto">
           Livres et ouvrages de référence qui ont nourri notre réflexion.
         </p>
@@ -54,9 +58,14 @@ export function DocumentationOuvrages() {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                scale: highlightedSourceId && (ouvrage.auteur.includes(highlightedSourceId) || ouvrage.titre.includes(highlightedSourceId)) ? 1.05 : 1,
+                borderColor: highlightedSourceId && (ouvrage.auteur.includes(highlightedSourceId) || ouvrage.titre.includes(highlightedSourceId)) ? "#ef4444" : "#fecaca"
+              }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="p-6 bg-white border-2 border-red-200 rounded-2xl hover:border-red-400 hover:shadow-xl transition-all"
+              className={`p-6 bg-white border-2 rounded-2xl transition-all ${highlightedSourceId && (ouvrage.auteur.includes(highlightedSourceId) || ouvrage.titre.includes(highlightedSourceId)) ? 'shadow-2xl ring-4 ring-red-100 z-10' : 'hover:border-red-400 hover:shadow-xl'}`}
             >
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-red-100 rounded-lg">
@@ -70,7 +79,7 @@ export function DocumentationOuvrages() {
                     <span className="text-xs text-gray-500">{ouvrage.annee}</span>
                   </div>
                   <h3 className="text-gray-900 mb-2 font-semibold">{ouvrage.titre}</h3>
-                  <p className="text-sm text-gray-500 mb-2">{ouvrage.auteur}</p>
+                  <p className="text-sm text-gray-500 mb-2 text-red-600 font-medium">{ouvrage.auteur}</p>
                   <p className="text-gray-600 text-sm leading-relaxed">{ouvrage.description}</p>
                   <a href={ouvrage.lien} target="_blank" rel="noopener noreferrer" className="text-red-600 text-sm font-semibold mt-2 flex items-center">
                     <ExternalLink className="mr-1" size={16} />

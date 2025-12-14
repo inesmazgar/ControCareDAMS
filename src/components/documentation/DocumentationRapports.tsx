@@ -1,7 +1,11 @@
 import { FileText, ExternalLink } from 'lucide-react';
 import { motion } from 'motion/react';
 
-export function DocumentationRapports() {
+interface DocumentationRapportsProps {
+  highlightedSourceId?: string | null;
+}
+
+export function DocumentationRapports({ highlightedSourceId }: DocumentationRapportsProps) {
   const rapports = [
     {
       titre: "Rapport sur le déploiement de la télémédecine en France",
@@ -40,7 +44,7 @@ export function DocumentationRapports() {
           <FileText className="text-red-600 mr-4" size={48} />
           <h1 className="text-gray-900 text-4xl font-bold">Rapports Officiels</h1>
         </div>
-        
+
         <p className="text-gray-600 text-center mb-8 max-w-3xl mx-auto">
           Rapports gouvernementaux et institutionnels sur la télémédecine.
         </p>
@@ -50,9 +54,14 @@ export function DocumentationRapports() {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                scale: highlightedSourceId && (rapport.organisme.includes(highlightedSourceId) || rapport.titre.includes(highlightedSourceId)) ? 1.05 : 1,
+                borderColor: highlightedSourceId && (rapport.organisme.includes(highlightedSourceId) || rapport.titre.includes(highlightedSourceId)) ? "#ef4444" : "#fecaca"
+              }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="p-6 bg-white border-2 border-red-200 rounded-2xl hover:border-red-400 hover:shadow-xl transition-all"
+              className={`p-6 bg-white border-2 rounded-2xl transition-all ${highlightedSourceId && (rapport.organisme.includes(highlightedSourceId) || rapport.titre.includes(highlightedSourceId)) ? 'shadow-2xl ring-4 ring-red-100 z-10' : 'hover:border-red-400 hover:shadow-xl'}`}
             >
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-red-100 rounded-lg">

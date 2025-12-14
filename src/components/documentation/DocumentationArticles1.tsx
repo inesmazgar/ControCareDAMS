@@ -1,7 +1,11 @@
 import { FileText, ExternalLink } from 'lucide-react';
 import { motion } from 'motion/react';
 
-export function DocumentationArticles1() {
+interface DocumentationArticles1Props {
+  highlightedSourceId?: string | null;
+}
+
+export function DocumentationArticles1({ highlightedSourceId }: DocumentationArticles1Props) {
   const articles = [
     {
       titre: "Impact of E-Health Literacy on Diabetes Self-Care Activities",
@@ -40,7 +44,7 @@ export function DocumentationArticles1() {
           <FileText className="text-red-600 mr-4" size={48} />
           <h1 className="text-gray-900 text-4xl font-bold">Articles Scientifiques</h1>
         </div>
-        
+
         <p className="text-gray-600 text-center mb-8 max-w-3xl mx-auto">
           Publications académiques et articles de recherche consultés pour cette étude.
         </p>
@@ -50,9 +54,14 @@ export function DocumentationArticles1() {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                scale: highlightedSourceId && article.auteur.includes(highlightedSourceId) ? 1.05 : 1,
+                borderColor: highlightedSourceId && article.auteur.includes(highlightedSourceId) ? "#ef4444" : "#fecaca"
+              }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="p-6 bg-white border-2 border-red-200 rounded-2xl hover:border-red-400 hover:shadow-xl transition-all"
+              className={`p-6 bg-white border-2 rounded-2xl transition-all ${highlightedSourceId && article.auteur.includes(highlightedSourceId) ? 'shadow-2xl ring-4 ring-red-100 z-10' : 'hover:border-red-400 hover:shadow-xl'}`}
             >
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-red-100 rounded-lg">
@@ -66,7 +75,7 @@ export function DocumentationArticles1() {
                     <span className="text-xs text-gray-500">{article.annee}</span>
                   </div>
                   <h3 className="text-gray-900 mb-2 font-semibold">{article.titre}</h3>
-                  <p className="text-sm text-gray-500 mb-2">{article.auteur}</p>
+                  <p className="text-sm text-gray-500 mb-2 text-red-600 font-medium">{article.auteur}</p>
                   <p className="text-gray-600 text-sm leading-relaxed">{article.description}</p>
                   <a href={article.lien} target="_blank" rel="noopener noreferrer" className="text-red-600 text-sm font-semibold mt-2 flex items-center">
                     Lire l'article <ExternalLink className="ml-1" size={16} />

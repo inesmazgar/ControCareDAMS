@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
-import { CheckCircle, X } from 'lucide-react';
+import { CheckCircle, X, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useModalContext } from "../context/ModalContext";
 
-export function ArgumentsFavorables() {
+interface ArgumentsFavorablesProps {
+  setActiveSection: (section: string, sourceId?: string) => void;
+}
+
+export function ArgumentsFavorables({ setActiveSection }: ArgumentsFavorablesProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const { setModalOpen } = useModalContext();
 
@@ -11,30 +15,45 @@ export function ArgumentsFavorables() {
     setModalOpen(!!selectedId);
   }, [selectedId, setModalOpen]);
 
+  // Source target mapping
+  // Thouvenot -> documentation-articles2
+  // Bourdel -> documentation-articles2
+  // Cases -> documentation-articles2
+  // Atmaja -> documentation-articles1
+  const defaultSourceTarget = "documentation-articles1";
+
   const argumentsList = [
     {
       id: "1",
-      titre: "Accessibilité des soins",
-      description: "Accès aux soins pour les populations isolées et les déserts médicaux.",
-      details: "La télémédecine permet de briser les barrières géographiques. Elle offre une solution concrète aux déserts médicaux en connectant les patients des zones rurales aux spécialistes situés dans les grandes villes. Elle facilite également l'accès aux soins pour les personnes à mobilité réduite ou en situation de handicap."
+      titre: "Accès aux soins amélioré",
+      description: "Réduit les déserts médicaux, plus d’équité (Thouvenot, 2014).",
+      details: "La télémédecine permet de briser les barrières géographiques et d'offrir une solution concrète aux déserts médicaux. Elle assure une plus grande équité dans l'accès aux soins, permettant aux populations isolées de consulter des spécialistes sans contrainte de distance majeure.",
+      source: "Thouvenot, 2014",
+      linkTarget: "documentation-articles3"
     },
     {
       id: "2",
-      titre: "Optimisation du temps médical",
-      description: "Réduction des déplacements et meilleure organisation du temps médical.",
-      details: "En réduisant les tâches administratives et en filtrant les demandes via la téléconsultation, les médecins peuvent se concentrer sur les cas nécessitant une présence physique. Cela permet une meilleure gestion de l'agenda médical et réduit les délais d'attente pour les patients."
+      titre: "Réduction des coûts",
+      description: "Moins de transports, moins d’hospitalisations inutiles (Bourdel, 2019).",
+      details: "L'usage de la télémédecine engendre une diminution significative des frais liés aux transports sanitaire et permet d'éviter bon nombre d'hospitalisations inutiles grâce à une prise en charge plus précoce et un suivi régulier à domicile.",
+      source: "Bourdel, 2019",
+      linkTarget: "documentation-articles3"
     },
     {
       id: "3",
-      titre: "Continuité des soins",
-      description: "Suivi régulier des patients chroniques et maintien du lien médecin-patient.",
-      details: "Pour les patients souffrant de maladies chroniques (diabète, hypertension), la télésurveillance permet un suivi constant des constantes vitales. Cela favorise l'observance thérapeutique et permet d'ajuster les traitements rapidement sans attendre la prochaine visite physique."
+      titre: "Autonomie du patient",
+      description: "Le patient devient acteur de sa santé (Cases, 2017).",
+      details: "Les outils numériques favorisent l'empowerment du patient, qui devient un véritable acteur de sa santé. Mieux informé et plus impliqué grâce aux dispositifs connectés, il participe activement à la gestion de son parcours de soins.",
+      source: "Cases, 2017",
+      linkTarget: "documentation-articles2"
     },
     {
       id: "4",
-      titre: "Réduction des coûts",
-      description: "Diminution des frais de transport et des hospitalisations évitables.",
-      details: "Au-delà des économies directes sur les transports sanitaire, la télémédecine permet de réduire significativement les ré-hospitalisations évitables en détectant précocement les complications. C'est un levier d'efficience majeur pour le système de santé."
+      titre: "Rapidité et sécurité",
+      description: "Avis médical plus rapide, moins de risques en période de crise (Atmaja et al., 2024).",
+      details: "En situation de crise sanitaire ou d'urgence relative, la e-santé garantit une obtention d'avis médical beaucoup plus rapide. Elle réduit également les risques de contamination en limitant les contacts physiques inutiles lors des épidémies.",
+      source: "Atmaja et al., 2024",
+      linkTarget: "documentation-articles1"
     }
   ];
 
@@ -97,6 +116,27 @@ export function ArgumentsFavorables() {
                     <p className="text-gray-600 leading-relaxed">
                       {item.details}
                     </p>
+
+                    <div className="pt-4 flex justify-end">
+                      <button
+                        onClick={() => {
+                          setSelectedId(null);
+                          // Extract just the name or year for simpler matching if needed, 
+                          // but passing the full source string often works if the logic uses .includes()
+                          // The logic I changed in doc components uses .includes(), so "Thouvenot, 2014" will match "Thouvenot, Véronique-Inès" if passed partially or if logic is loose.
+                          // Actually, doc components check `article.auteur.includes(highlightedSourceId)`.
+                          // "Thouvenot, 2014" won't match "Thouvenot, Véronique-Inès" via includes in that direction.
+                          // I should pass just "Thouvenot" or "Bourdel".
+                          // Let's refine the source to pass a better key.
+                          const sourceKey = item.source.split(',')[0].trim();
+                          setActiveSection(item.linkTarget, sourceKey);
+                        }}
+                        className="flex items-center text-green-700 hover:text-green-800 font-medium transition-colors text-sm"
+                      >
+                        Voir la source ({item.source})
+                        <ArrowRight size={16} className="ml-2" />
+                      </button>
+                    </div>
                   </motion.div>
                 </motion.div>
               ))}

@@ -1,15 +1,36 @@
 import { useState, useEffect } from 'react';
-import { Network, X, BookOpen, User } from 'lucide-react';
+import { Network, X, User, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useModalContext } from "../context/ModalContext";
 
-export function EnjeuxTransversaux() {
+interface EnjeuxTransversauxProps {
+  setActiveSection: (section: string, sourceId?: string) => void;
+}
+
+export function EnjeuxTransversaux({ setActiveSection }: EnjeuxTransversauxProps) {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const { setModalOpen } = useModalContext();
 
   useEffect(() => {
     setModalOpen(!!selectedId);
   }, [selectedId, setModalOpen]);
+
+  // Helper to determine target slide and source ID
+  const getTarget = (source: string) => {
+    if (source.includes("Ballout") || source.includes("Mercier")) {
+      return { target: "experts", id: undefined };
+    }
+    if (source.includes("Cases")) {
+      return { target: "documentation-articles2", id: "Cases" };
+    }
+    if (source.includes("CNIL")) {
+      return { target: "documentation-sites-web", id: "CNIL" };
+    }
+    if (source.includes("HAS")) {
+      return { target: "documentation-rapports", id: "HAS" };
+    }
+    return { target: "accueil", id: undefined };
+  };
 
   const enjeux = [
     {
@@ -97,15 +118,29 @@ export function EnjeuxTransversaux() {
 
                   <motion.div className="space-y-4">
                     <p className="text-lg text-gray-700 font-medium">{item.description}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {item.sources.map((source, i) => (
-                        <span key={i} className="flex items-center gap-1 text-xs px-3 py-1 bg-gray-100 text-gray-700 rounded-full font-medium">
-                          <User size={12} />
-                          {source}
-                        </span>
-                      ))}
-                    </div>
                     <div className="h-px bg-gray-200 w-full my-4" />
+                    <p className="text-gray-600 leading-relaxed text-sm font-medium mb-2">Sources liées :</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {item.sources.map((source, i) => {
+                        const { target, id } = getTarget(source);
+                        return (
+                          <button
+                            key={i}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedId(null);
+                              setActiveSection(target, id);
+                            }}
+                            className="flex items-center gap-1 text-xs px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full font-medium hover:bg-gray-200 hover:text-gray-900 transition-colors"
+                          >
+                            <User size={12} />
+                            {source}
+                            <ArrowRight size={12} className="ml-1 opacity-50" />
+                          </button>
+                        );
+                      })}
+                    </div>
+
                     <p className="text-gray-600 leading-relaxed text-sm">
                       {item.details}
                     </p>

@@ -42,7 +42,7 @@ export function Experts() {
   ];
 
   return (
-    <div className="h-full w-full bg-gradient-to-br from-gray-50 via-white to-gray-50 overflow-y-auto flex items-center justify-center relative">
+    <div className="min-h-full w-full bg-gradient-to-br from-gray-50 via-white to-gray-50 relative flex items-center justify-center py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex items-center justify-center mb-12">
           <User className="text-gray-600 mr-4" size={48} />
@@ -53,7 +53,7 @@ export function Experts() {
           Trois experts représentant différentes perspectives sur la controverse.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto h-[60vh] items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto h-auto min-h-[60vh] items-center">
           {experts.map((expert, index) => (
             <motion.div
               layoutId={`expert - ${index} `}

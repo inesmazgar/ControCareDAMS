@@ -51,7 +51,7 @@ export function ArgumentsDefavorables({ setActiveSection }: ArgumentsDefavorable
   ];
 
   return (
-    <div className="h-full w-full bg-gradient-to-br from-red-50 via-white to-red-50 overflow-y-auto flex items-center justify-center relative">
+    <div className="min-h-full w-full bg-gradient-to-br from-red-50 via-white to-red-50 flex items-center justify-center relative py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex items-center justify-center mb-8">
           <XCircle className="text-red-600 mr-4" size={48} />

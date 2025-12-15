@@ -23,13 +23,22 @@ scp site.tar.gz hugo@20.199.130.29:~/
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "`nSUCCESS: Transfer complete!" -ForegroundColor Green
-    Write-Host "`n--> COPY AND PASTE THESE COMMANDS ON THE SERVER:" -ForegroundColor Cyan
-    Write-Host "---------------------------------------------------"
-    Write-Host "sudo rm -rf /var/www/html/*" -ForegroundColor White
-    Write-Host "sudo tar -xzf ~/site.tar.gz -C /var/www/html/" -ForegroundColor White
-    Write-Host "sudo chown -R www-data:www-data /var/www/html" -ForegroundColor White
-    Write-Host "---------------------------------------------------"
-} else {
+    
+    # 4. Remote Execution
+    Write-Host "`n4. Applying changes on server..." -ForegroundColor Yellow
+    ssh -t hugo@20.199.130.29 "sudo rm -rf /var/www/html/* && sudo tar -xzf ~/site.tar.gz -C /var/www/html/ && sudo chown -R www-data:www-data /var/www/html"
+    
+    if ($LASTEXITCODE -eq 0) {
+        Write-Host "`nDEPLOYMENT COMPLETE! Site updated successfully." -ForegroundColor Green
+    }
+    else {
+        Write-Host "`nWARNING: Automatic deployment failed. Please run these commands manually on the server:" -ForegroundColor Yellow
+        Write-Host "sudo rm -rf /var/www/html/*"
+        Write-Host "sudo tar -xzf ~/site.tar.gz -C /var/www/html/"
+        Write-Host "sudo chown -R www-data:www-data /var/www/html"
+    }
+}
+else {
     Write-Host "Error during SCP transfer." -ForegroundColor Red
 }
 

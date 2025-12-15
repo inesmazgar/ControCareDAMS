@@ -8,7 +8,7 @@ interface HeroProps {
 
 export function Hero({ setActiveSection }: HeroProps) {
   return (
-    <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 relative overflow-hidden">
+    <div className="min-h-full w-full bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 relative flex items-center justify-center py-12">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -47,7 +47,7 @@ export function Hero({ setActiveSection }: HeroProps) {
           }}
           className="absolute top-1/2 left-1/4 w-24 h-24 bg-teal-200 rounded-full blur-2xl opacity-50"
         />
-        
+
         {/* Floating icons */}
         <motion.div
           animate={{
@@ -63,7 +63,7 @@ export function Hero({ setActiveSection }: HeroProps) {
         >
           <Heart size={40} className="text-green-300 opacity-20" />
         </motion.div>
-        
+
         <motion.div
           animate={{
             y: [0, 20, 0],
@@ -78,7 +78,7 @@ export function Hero({ setActiveSection }: HeroProps) {
         >
           <Network size={50} className="text-emerald-300 opacity-20" />
         </motion.div>
-        
+
         <motion.div
           animate={{
             y: [0, -10, 0],
@@ -95,7 +95,7 @@ export function Hero({ setActiveSection }: HeroProps) {
         </motion.div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -104,21 +104,21 @@ export function Hero({ setActiveSection }: HeroProps) {
         >
           <svg width="120" height="120" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             {/* Background circle */}
-            <circle cx="20" cy="20" r="18" fill="#10B981" opacity="0.1"/>
-            
+            <circle cx="20" cy="20" r="18" fill="#10B981" opacity="0.1" />
+
             {/* Heart with pulse */}
-            <path 
-              d="M20 28C20 28 10 22 10 15C10 12 12 10 14.5 10C16.5 10 18 11 20 13C22 11 23.5 10 25.5 10C28 10 30 12 30 15C30 22 20 28 20 28Z" 
+            <path
+              d="M20 28C20 28 10 22 10 15C10 12 12 10 14.5 10C16.5 10 18 11 20 13C22 11 23.5 10 25.5 10C28 10 30 12 30 15C30 22 20 28 20 28Z"
               fill="#10B981"
               opacity="0.8"
             />
-            
+
             {/* Animated pulse line */}
-            <path 
-              d="M8 20 L12 20 L14 16 L16 24 L18 20 L20 20 L22 20 L24 16 L26 24 L28 20 L32 20" 
-              stroke="#059669" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
+            <path
+              d="M8 20 L12 20 L14 16 L16 24 L18 20 L20 20 L22 20 L24 16 L26 24 L28 20 L32 20"
+              stroke="#059669"
+              strokeWidth="2"
+              strokeLinecap="round"
               strokeLinejoin="round"
               fill="none"
             >
@@ -132,10 +132,10 @@ export function Hero({ setActiveSection }: HeroProps) {
                         M8 20 L12 20 L14 16 L16 24 L18 20 L20 20 L22 20 L24 16 L26 24 L28 20 L32 20"
               />
             </path>
-            
+
             {/* Plus symbol (medical) */}
-            <circle cx="30" cy="12" r="6" fill="white"/>
-            <path d="M30 9 L30 15 M27 12 L33 12" stroke="#10B981" strokeWidth="2" strokeLinecap="round"/>
+            <circle cx="30" cy="12" r="6" fill="white" />
+            <path d="M30 9 L30 15 M27 12 L33 12" stroke="#10B981" strokeWidth="2" strokeLinecap="round" />
           </svg>
         </motion.div>
 
@@ -152,16 +152,16 @@ export function Hero({ setActiveSection }: HeroProps) {
             </span>
           </h1>
         </motion.div>
-        
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-gray-600 text-lg max-w-3xl mx-auto mb-12 leading-relaxed"
         >
-          Une exploration approfondie des enjeux, débats et perspectives entourant 
-          la transformation numérique du système de santé. Découvrez le résultat 
-          de nos recherches académiques et entretiens avec des experts du domaine 
+          Une exploration approfondie des enjeux, débats et perspectives entourant
+          la transformation numérique du système de santé. Découvrez le résultat
+          de nos recherches académiques et entretiens avec des experts du domaine
           de la santé connectée et de la télémédecine.
         </motion.p>
 
@@ -178,7 +178,7 @@ export function Hero({ setActiveSection }: HeroProps) {
             Explorer l'argumentation
             <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
           </button>
-          
+
           <button
             onClick={() => setActiveSection('experts')}
             className="inline-flex items-center px-8 py-4 bg-green-700 text-white rounded-full hover:bg-green-800 hover:shadow-lg transition-all duration-300"

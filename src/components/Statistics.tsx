@@ -35,14 +35,14 @@ export function Statistics({ setActiveSection }: StatisticsProps) {
               Entretiens approfondis avec des professionnels de la santé
             </p>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             whileHover={{ y: -8, scale: 1.03 }}
             className="p-8 bg-white/80 backdrop-blur-sm border-2 border-emerald-200 rounded-2xl shadow-lg hover:shadow-xl hover:border-emerald-400 transition-all cursor-pointer"
-            onClick={() => setActiveSection('documentation')}
+            onClick={() => setActiveSection('documentation-articles1')}
           >
             <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-emerald-100 to-emerald-100 rounded-2xl mb-6">
               <BookOpen size={40} className="text-emerald-600" />
@@ -52,14 +52,14 @@ export function Statistics({ setActiveSection }: StatisticsProps) {
               Bibliographie académique complète et vérifiée
             </p>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             whileHover={{ y: -8, scale: 1.03 }}
             className="p-8 bg-white/80 backdrop-blur-sm border-2 border-red-200 rounded-2xl shadow-lg hover:shadow-xl hover:border-red-400 transition-all cursor-pointer"
-            onClick={() => setActiveSection('chronologie')}
+            onClick={() => setActiveSection('chronologie-group1')}
           >
             <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-red-100 to-red-100 rounded-2xl mb-6">
               <TrendingUp size={40} className="text-red-600" />
@@ -69,14 +69,14 @@ export function Statistics({ setActiveSection }: StatisticsProps) {
               Évolution historique de la télémédecine
             </p>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
             whileHover={{ y: -8, scale: 1.03 }}
             className="p-8 bg-white/80 backdrop-blur-sm border-2 border-gray-300 rounded-2xl shadow-lg hover:shadow-xl hover:border-gray-400 transition-all cursor-pointer"
-            onClick={() => setActiveSection('equipe')}
+            onClick={() => setActiveSection('team-group1')}
           >
             <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-gray-100 to-gray-100 rounded-2xl mb-6">
               <Users size={40} className="text-gray-600" />

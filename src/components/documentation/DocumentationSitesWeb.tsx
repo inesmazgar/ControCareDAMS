@@ -1,7 +1,11 @@
 import { Globe, ExternalLink } from 'lucide-react';
 import { motion } from 'motion/react';
 
-export function DocumentationSitesWeb() {
+interface DocumentationSitesWebProps {
+  highlightedSourceId?: string | null;
+}
+
+export function DocumentationSitesWeb({ highlightedSourceId }: DocumentationSitesWebProps) {
   const sites = [
     {
       titre: "Ameli.fr - Espace professionnel",
@@ -32,7 +36,7 @@ export function DocumentationSitesWeb() {
           <Globe className="text-red-600 mr-4" size={48} />
           <h1 className="text-gray-900 text-4xl font-bold">Sites Web et Ressources en ligne</h1>
         </div>
-        
+
         <p className="text-gray-600 text-center mb-8 max-w-3xl mx-auto">
           Sources numériques et plateformes consultées.
         </p>
@@ -42,9 +46,14 @@ export function DocumentationSitesWeb() {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                scale: highlightedSourceId && (site.titre.includes(highlightedSourceId) || site.description.includes(highlightedSourceId)) ? 1.05 : 1,
+                borderColor: highlightedSourceId && (site.titre.includes(highlightedSourceId) || site.description.includes(highlightedSourceId)) ? "#ef4444" : "#fecaca"
+              }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="p-6 bg-white border-2 border-red-200 rounded-2xl hover:border-red-400 hover:shadow-xl transition-all"
+              className={`p-6 bg-white border-2 rounded-2xl transition-all ${highlightedSourceId && (site.titre.includes(highlightedSourceId) || site.description.includes(highlightedSourceId)) ? 'shadow-2xl ring-4 ring-red-100 z-10' : 'hover:border-red-400 hover:shadow-xl'}`}
             >
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-red-100 rounded-lg">

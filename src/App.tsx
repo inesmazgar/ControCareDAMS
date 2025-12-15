@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { ModalProvider } from "./context/ModalContext";
+import { ArrowLeft } from "lucide-react";
 import { Hero } from "./components/Hero";
 import { Statistics } from "./components/Statistics";
 import { ArgumentsFavorables } from "./components/ArgumentsFavorables";
@@ -18,9 +20,9 @@ import { MethodologieStep1 } from "./components/methodologie/MethodologieStep1";
 import { MethodologieStep2 } from "./components/methodologie/MethodologieStep2";
 import { MethodologieStep3 } from "./components/methodologie/MethodologieStep3";
 import { MethodologieEntretiensEthique } from "./components/methodologie/MethodologieEntretiensEthique";
-import { DocumentationEntretiens } from "./components/documentation/DocumentationEntretiens";
 import { DocumentationArticles1 } from "./components/documentation/DocumentationArticles1";
 import { DocumentationArticles2 } from "./components/documentation/DocumentationArticles2";
+import { DocumentationArticles3 } from "./components/documentation/DocumentationArticles3";
 import { DocumentationOuvrages } from "./components/documentation/DocumentationOuvrages";
 import { DocumentationRapports } from "./components/documentation/DocumentationRapports";
 import { DocumentationTheses } from "./components/documentation/DocumentationTheses";
@@ -41,12 +43,13 @@ import { SlideNavigation } from "./components/SlideNavigation";
 export default function App() {
   const [activeSection, setActiveSection] = useState("accueil");
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [previousSection, setPreviousSection] = useState<string | null>(null);
+  const [highlightedSourceId, setHighlightedSourceId] = useState<string | null>(null);
 
   // Mettre à jour le titre de la page et le favicon
   useEffect(() => {
     document.title = "ControCare : Controverse de Télémédecine";
-    
-    // Créer et ajouter le favicon SVG
+    // ... favicon logic
     const link = document.querySelector("link[rel*='icon']") as HTMLLinkElement || document.createElement('link');
     link.type = 'image/svg+xml';
     link.rel = 'icon';
@@ -58,37 +61,46 @@ export default function App() {
   const slides = [
     "accueil",
     "statistiques",
-    "enjeux-transversaux",
-    "arguments-favorables",
-    "sources-continuite",
-    "sources-couts",
-    "arguments-defavorables",
-    "sources-donnees",
-    "sources-deshumanisation",
-    "chronologie-group1",
-    "chronologie-group2",
-    "chronologie-group3",
-    "chronologie-group4",
+
+    // Experts & Méthodologie
     "experts",
     "methodologie-analyse",
     "methodologie-step1",
     "methodologie-step2",
     "methodologie-step3",
     "methodologie-entretiens-ethique",
-    "documentation-entretiens",
+
+    // Chronologie
+    "chronologie-group1",
+    "chronologie-group2",
+    "chronologie-group3",
+    "chronologie-group4",
+
+    // Argumentation
+    "enjeux-transversaux",
+    "arguments-favorables",
+
+    "arguments-defavorables",
+
+
+    // Documentation
     "documentation-articles1",
     "documentation-articles2",
+    "documentation-articles3",
     "documentation-ouvrages",
     "documentation-rapports",
     "documentation-theses",
     "documentation-sites-web",
     "documentation-sites-web2",
     "illustrations-videos",
+
+    // AMUE + Conclusion -> Equipe
     "article",
-    "team-group1",
-    "team-group2",
     "remerciements1",
     "remerciements2",
+    "team-group1",
+    "team-group2",
+
     "disclaimer"
   ];
 
@@ -132,169 +144,202 @@ export default function App() {
     };
   }, []);
 
-  // Gérer les clics depuis le Header
-  const handleSectionChange = (section: string) => {
+  // Gérer les clics depuis le Header et la navigation interne
+  const handleNavigation = (section: string, sourceId?: string) => {
     const slideIndex = slides.indexOf(section);
     if (slideIndex !== -1) {
+      // If we are navigating with a sourceId, it likely means we are jumping to a source.
+      // Save current position ONLY if we are not already in a "jumped" state (to avoid overwriting the original source)
+      // or if we decide to overwrite it. A simple stack is better, but one level is enough for "Back to text".
+      if (sourceId) {
+        setPreviousSection(activeSection);
+      } else {
+        // Normal navigation usually clears history? 
+        // Or should we keep it if the user manually navigates?
+        // Let's clear it if they navigate via menu to keep UI clean, 
+        // unless they click "Back".
+        setPreviousSection(null);
+      }
+
       setCurrentSlide(slideIndex);
+
+      if (sourceId) {
+        setHighlightedSourceId(sourceId);
+        setTimeout(() => setHighlightedSourceId(null), 3000);
+      }
+    }
+  };
+
+  const handleBack = () => {
+    if (previousSection) {
+      const slideIndex = slides.indexOf(previousSection);
+      if (slideIndex !== -1) {
+        setCurrentSlide(slideIndex);
+        setPreviousSection(null); // Clear history after going back
+      }
     }
   };
 
   return (
-    <div className="h-screen overflow-hidden bg-white">
-      <Header
-        activeSection={activeSection}
-        setActiveSection={handleSectionChange}
-      />
+    <ModalProvider>
+      <div className="h-screen overflow-hidden bg-white">
+        <Header
+          activeSection={activeSection}
+          setActiveSection={handleNavigation}
+        />
 
-      <main className="h-full">
-        <Slide isActive={currentSlide === 0}>
-          <Hero setActiveSection={handleSectionChange} />
-        </Slide>
+        <main className="h-full">
+          <Slide isActive={activeSection === "accueil"}>
+            <Hero setActiveSection={handleNavigation} />
+          </Slide>
 
-        <Slide isActive={currentSlide === 1}>
-          <Statistics setActiveSection={handleSectionChange} />
-        </Slide>
+          <Slide isActive={activeSection === "statistiques"}>
+            <Statistics setActiveSection={handleNavigation} />
+          </Slide>
+
+          {/* Experts & Méthodologie */}
+          <Slide isActive={activeSection === "experts"}>
+            <Experts />
+          </Slide>
+
+          <Slide isActive={activeSection === "methodologie-analyse"}>
+            <MethodologieAnalyse />
+          </Slide>
+
+          <Slide isActive={activeSection === "methodologie-step1"}>
+            <MethodologieStep1 />
+          </Slide>
+
+          <Slide isActive={activeSection === "methodologie-step2"}>
+            <MethodologieStep2 />
+          </Slide>
+
+          <Slide isActive={activeSection === "methodologie-step3"}>
+            <MethodologieStep3 />
+          </Slide>
+
+          <Slide isActive={activeSection === "methodologie-entretiens-ethique"}>
+            <MethodologieEntretiensEthique />
+          </Slide>
+
+          {/* Chronologie */}
+          <Slide isActive={activeSection === "chronologie-group1"}>
+            <TimelineGroup1 />
+          </Slide>
+
+          <Slide isActive={activeSection === "chronologie-group2"}>
+            <TimelineGroup2 />
+          </Slide>
+
+          <Slide isActive={activeSection === "chronologie-group3"}>
+            <TimelineGroup3 />
+          </Slide>
+
+          <Slide isActive={activeSection === "chronologie-group4"}>
+            <TimelineGroup4 />
+          </Slide>
+
+          {/* Argumentation */}
+          <Slide isActive={activeSection === "enjeux-transversaux"}>
+            <EnjeuxTransversaux setActiveSection={handleNavigation} />
+          </Slide>
+
+          <Slide isActive={activeSection === "arguments-favorables"}>
+            <ArgumentsFavorables setActiveSection={handleNavigation} />
+          </Slide>
+
+          <Slide isActive={activeSection === "arguments-defavorables"}>
+            <ArgumentsDefavorables setActiveSection={handleNavigation} />
+          </Slide>
 
 
-        <Slide isActive={currentSlide === 2}>
-          <EnjeuxTransversaux />
-        </Slide>
+          {/* Documentation */}
+          <Slide isActive={activeSection === "documentation-articles1"}>
+            <DocumentationArticles1 highlightedSourceId={highlightedSourceId} />
+          </Slide>
 
-        <Slide isActive={currentSlide === 3}>
-          <ArgumentsFavorables />
-        </Slide>
+          <Slide isActive={activeSection === "documentation-articles2"}>
+            <DocumentationArticles2 highlightedSourceId={highlightedSourceId} />
+          </Slide>
 
-        <Slide isActive={currentSlide === 4}>
-          <SourcesContinuite />
-        </Slide>
+          <Slide isActive={activeSection === "documentation-articles3"}>
+            <DocumentationArticles3 highlightedSourceId={highlightedSourceId} />
+          </Slide>
 
-        <Slide isActive={currentSlide === 5}>
-          <SourcesCouts />
-        </Slide>
+          <Slide isActive={activeSection === "documentation-ouvrages"}>
+            <DocumentationOuvrages highlightedSourceId={highlightedSourceId} />
+          </Slide>
 
-        <Slide isActive={currentSlide === 6}>
-          <ArgumentsDefavorables />
-        </Slide>
+          <Slide isActive={activeSection === "documentation-rapports"}>
+            <DocumentationRapports highlightedSourceId={highlightedSourceId} />
+          </Slide>
 
-        <Slide isActive={currentSlide === 7}>
-          <SourcesDonnees />
-        </Slide>
+          <Slide isActive={activeSection === "documentation-theses"}>
+            <DocumentationTheses />
+          </Slide>
 
-        <Slide isActive={currentSlide === 8}>
-          <SourcesDeshumanisation />
-        </Slide>
+          <Slide isActive={activeSection === "documentation-sites-web"}>
+            <DocumentationSitesWeb highlightedSourceId={highlightedSourceId} />
+          </Slide>
 
-        <Slide isActive={currentSlide === 9}>
-          <TimelineGroup1 />
-        </Slide>
+          <Slide isActive={activeSection === "documentation-sites-web2"}>
+            <DocumentationSitesWeb2 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 10}>
-          <TimelineGroup2 />
-        </Slide>
+          <Slide isActive={activeSection === "illustrations-videos"}>
+            <IllustrationsVideos />
+          </Slide>
 
-        <Slide isActive={currentSlide === 11}>
-          <TimelineGroup3 />
-        </Slide>
+          {/* AMUE + Conclusion -> Equipe */}
+          {/* AMUE + Conclusion -> Equipe */}
+          <Slide isActive={activeSection === "article"}>
+            <ArticleResume />
+          </Slide>
 
-        <Slide isActive={currentSlide === 12}>
-          <TimelineGroup4 />
-        </Slide>
+          <Slide isActive={activeSection === "remerciements1"}>
+            <Remerciements1 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 13}>
-          <Experts />
-        </Slide>
+          <Slide isActive={activeSection === "remerciements2"}>
+            <Remerciements2 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 14}>
-          <MethodologieAnalyse />
-        </Slide>
+          <Slide isActive={activeSection === "team-group1"}>
+            <TeamGroup1 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 15}>
-          <MethodologieStep1 />
-        </Slide>
+          <Slide isActive={activeSection === "team-group2"}>
+            <TeamGroup2 />
+          </Slide>
 
-        <Slide isActive={currentSlide === 16}>
-          <MethodologieStep2 />
-        </Slide>
+          <Slide isActive={activeSection === "disclaimer"}>
+            <Disclaimer />
+          </Slide>
+        </main>
 
-        <Slide isActive={currentSlide === 17}>
-          <MethodologieStep3 />
-        </Slide>
+        {/* Navigation par flèches */}
+        <SlideNavigation
+          currentSlide={currentSlide}
+          totalSlides={slides.length}
+          onNext={handleNext}
+          onPrevious={handlePrevious}
+        />
 
-        <Slide isActive={currentSlide === 18}>
-          <MethodologieEntretiensEthique />
-        </Slide>
+        {/* Bouton Retour (si navigation croisée) */}
+        {previousSection && (
+          <div className="fixed bottom-24 right-8 z-50">
+            <button
+              onClick={handleBack}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-semibold shadow-lg transition-all flex items-center gap-2 animate-bounce-subtle"
+            >
+              <ArrowLeft size={20} />
+              Retour à la lecture
+            </button>
+          </div>
+        )}
 
-        <Slide isActive={currentSlide === 19}>
-          <DocumentationEntretiens />
-        </Slide>
-
-        <Slide isActive={currentSlide === 20}>
-          <DocumentationArticles1 />
-        </Slide>
-
-        <Slide isActive={currentSlide === 21}>
-          <DocumentationArticles2 />
-        </Slide>
-
-        <Slide isActive={currentSlide === 22}>
-          <DocumentationOuvrages />
-        </Slide>
-
-        <Slide isActive={currentSlide === 23}>
-          <DocumentationRapports />
-        </Slide>
-
-        <Slide isActive={currentSlide === 24}>
-          <DocumentationTheses />
-        </Slide>
-
-        <Slide isActive={currentSlide === 25}>
-          <DocumentationSitesWeb />
-        </Slide>
-
-        <Slide isActive={currentSlide === 26}>
-          <DocumentationSitesWeb2 />
-        </Slide>
-
-        <Slide isActive={currentSlide === 27}>
-          <IllustrationsVideos />
-        </Slide>
-
-        <Slide isActive={currentSlide === 28}>
-          <ArticleResume />
-        </Slide>
-
-        <Slide isActive={currentSlide === 29}>
-          <TeamGroup1 />
-        </Slide>
-
-        <Slide isActive={currentSlide === 30}>
-          <TeamGroup2 />
-        </Slide>
-
-        <Slide isActive={currentSlide === 31}>
-          <Remerciements1 />
-        </Slide>
-
-        <Slide isActive={currentSlide === 32}>
-          <Remerciements2 />
-        </Slide>
-
-        <Slide isActive={currentSlide === 33}>
-          <Disclaimer />
-        </Slide>
-      </main>
-
-      {/* Navigation par flèches */}
-      <SlideNavigation
-        currentSlide={currentSlide}
-        totalSlides={slides.length}
-        onNext={handleNext}
-        onPrevious={handlePrevious}
-      />
-
-      <Footer onDisclaimerClick={() => setCurrentSlide(slides.length - 1)} />
-    </div>
+        <Footer onDisclaimerClick={() => setCurrentSlide(slides.length - 1)} />
+      </div>
+    </ModalProvider>
   );
 }

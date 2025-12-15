@@ -1,35 +1,32 @@
 import { FileText, ExternalLink } from 'lucide-react';
 import { motion } from 'motion/react';
 
-export function DocumentationArticles2() {
+interface DocumentationArticles2Props {
+  highlightedSourceId?: string | null;
+}
+
+export function DocumentationArticles2({ highlightedSourceId }: DocumentationArticles2Props) {
   const articles = [
     {
       titre: "Investigating the Current State of E-Health Tools Adoption",
       auteur: "Rhodrick, Nyasha Musakuro",
       annee: "2025",
       description: "État actuel de l'adoption des outils de santé numérique pour les services de santé mentale.",
-      lien: "https://doi.org/10.1007/s11126-025-10123-4"
+      lien: "https://www.proquest.com/docview/3203475946/abstract/D03A86D5738A49A9PQ/2?sourcetype=Scholarly%20Journals"
     },
     {
       titre: "Innovations in E-Health",
       auteur: "Wicks, Paul, et al.",
       annee: "2014",
       description: "Analyse des innovations fondamentales en e-santé et leur impact sur les soins.",
-      lien: "https://doi.org/10.2196/jmir.2952"
+      lien: "https://www.proquest.com/docview/1491225586/abstract/198273BB6A5F4BE9PQ/1?sourcetype=Scholarly%20Journals"
     },
     {
       titre: "L'e-santé : l'empowerment du patient connecté",
       auteur: "Cases, Anne-Sophie",
       annee: "2017",
       description: "Étude de l'autonomisation des patients par les technologies de santé connectée.",
-      lien: "https://doi.org/10.3917/heg.172.0033"
-    },
-    {
-      titre: "Objets connectés et santé",
-      auteur: "Debet, Anne",
-      annee: "2017",
-      description: "Analyse juridique et éthique des objets connectés dans le domaine de la santé.",
-      lien: "https://doi.org/10.3917/legi.602.0264"
+      lien: "https://shs.cairn.info/revue-journal-de-gestion-et-d-economie-medicales-2017-4-page-137?lang=fr"
     }
   ];
 
@@ -40,7 +37,7 @@ export function DocumentationArticles2() {
           <FileText className="text-red-600 mr-4" size={48} />
           <h1 className="text-gray-900 text-4xl font-bold">Articles Scientifiques</h1>
         </div>
-        
+
         <p className="text-gray-600 text-center mb-8 max-w-3xl mx-auto">
           Publications académiques et articles de recherche consultés pour cette étude.
         </p>
@@ -50,9 +47,14 @@ export function DocumentationArticles2() {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                scale: highlightedSourceId && article.auteur.includes(highlightedSourceId) ? 1.05 : 1,
+                borderColor: highlightedSourceId && article.auteur.includes(highlightedSourceId) ? "#ef4444" : "#fecaca"
+              }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="p-6 bg-white border-2 border-red-200 rounded-2xl hover:border-red-400 hover:shadow-xl transition-all"
+              className={`p-6 bg-white border-2 rounded-2xl transition-all ${highlightedSourceId && article.auteur.includes(highlightedSourceId) ? 'shadow-2xl ring-4 ring-red-100 z-10' : 'hover:border-red-400 hover:shadow-xl'}`}
             >
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-red-100 rounded-lg">
@@ -66,7 +68,7 @@ export function DocumentationArticles2() {
                     <span className="text-xs text-gray-500">{article.annee}</span>
                   </div>
                   <h3 className="text-gray-900 mb-2 font-semibold">{article.titre}</h3>
-                  <p className="text-sm text-gray-500 mb-2">{article.auteur}</p>
+                  <p className="text-sm text-gray-500 mb-2 text-red-600 font-medium">{article.auteur}</p>
                   <p className="text-gray-600 text-sm leading-relaxed">{article.description}</p>
                   <a href={article.lien} target="_blank" rel="noopener noreferrer" className="text-red-600 text-sm font-semibold mt-2 flex items-center">
                     Lire l'article <ExternalLink className="ml-1" size={16} />

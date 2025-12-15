@@ -38,7 +38,7 @@ export function ArticleResume() {
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-gray-900 text-2xl font-semibold">Document de synthèse</h2>
             <a
-              href="#"
+              href="/documents/article-amue.pdf"
               className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
             >
               <ExternalLink size={16} className="mr-2" />
@@ -55,9 +55,7 @@ export function ArticleResume() {
           <div className="mb-6">
             <h3 className="text-gray-900 mb-3 font-semibold">Résumé</h3>
             <p className="text-gray-700 leading-relaxed">
-              Cet article explore la controverse entourant la télémédecine et l'e-santé en France, 
-              en analysant les arguments des différentes parties prenantes et les enjeux sociétaux, 
-              économiques et éthiques soulevés par la transformation numérique du système de santé.
+              L’e‑santé, portée par la télémédecine, les objets connectés et les dossiers médicaux numériques, promet une meilleure accessibilité aux soins, une personnalisation accrue et une réduction des coûts. Toutefois, son essor soulève des risques majeurs : protection des données, marchandisation du soin, fracture numérique et crainte d’une médecine déshumanisée. La controverse dépasse la technique pour devenir politique, dominée par les intérêts des grandes entreprises technologiques. La conclusion appelle à une gouvernance publique, une éthique des algorithmes, une sécurisation des données et une éducation numérique afin de garantir une santé numérique équitable et humaine.
             </p>
           </div>
 
@@ -74,8 +72,8 @@ export function ArticleResume() {
 
           <div className="pt-6 border-t border-gray-200">
             <p className="text-sm text-gray-500">
-              Date de publication : <span className="font-semibold">Novembre 2024</span> | 
-              Nombre de mots : <span className="font-semibold">1,247</span>
+              Date de publication : <span className="font-semibold">Novembre 2025</span> | 
+              Nombre de mots : <span className="font-semibold">870</span>
             </p>
           </div>
         </motion.div>

@@ -1,4 +1,5 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useModalContext } from "../context/ModalContext";
 
 interface SlideNavigationProps {
   currentSlide: number;
@@ -13,6 +14,10 @@ export function SlideNavigation({
   onNext,
   onPrevious,
 }: SlideNavigationProps) {
+  const { isModalOpen } = useModalContext();
+
+  if (isModalOpen) return null;
+
   return (
     <>
       {/* Flèche gauche (Précédent) */}
@@ -42,11 +47,10 @@ export function SlideNavigation({
         {Array.from({ length: totalSlides }).map((_, index) => (
           <div
             key={index}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              index === currentSlide
+            className={`h-2 rounded-full transition-all duration-300 ${index === currentSlide
                 ? "w-8 bg-emerald-600"
                 : "w-2 bg-gray-300"
-            }`}
+              }`}
           />
         ))}
       </div>

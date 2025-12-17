@@ -7,7 +7,7 @@ interface StatisticsProps {
 
 export function Statistics({ setActiveSection }: StatisticsProps) {
   return (
-    <div className="min-h-full w-full bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 relative flex items-center justify-center py-12">
+    <div className="h-full w-full bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 relative flex items-center justify-center overflow-y-auto">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-12">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

@@ -11,7 +11,7 @@ export function Slide({ children, isActive }: SlideProps) {
   return (
     <div className="h-screen w-full flex flex-col animate-in fade-in duration-500">
       {/* Contenu de la slide - scroll si le contenu dépasse */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto flex flex-col">
         {children}
       </div>
 

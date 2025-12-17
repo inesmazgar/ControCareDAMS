@@ -58,14 +58,14 @@ export function ArgumentsFavorables({ setActiveSection }: ArgumentsFavorablesPro
   ];
 
   return (
-    <div className="min-h-full w-full bg-gradient-to-br from-green-50 via-white to-green-50 flex items-center justify-center relative py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex items-center justify-center mb-8">
-          <CheckCircle className="text-green-600 mr-4" size={48} />
-          <h1 className="text-gray-900 text-4xl font-bold">Arguments Favorables</h1>
+    <div className="h-full w-full bg-gradient-to-br from-green-50 via-white to-green-50 overflow-y-auto flex items-center justify-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+        <div className="flex items-center justify-center mb-4">
+          <CheckCircle className="text-green-600 mr-4" size={40} />
+          <h1 className="text-gray-900 text-3xl font-bold">Arguments Favorables</h1>
         </div>
 
-        <p className="text-gray-600 text-center mb-8 max-w-3xl mx-auto">
+        <p className="text-gray-600 text-center mb-6 max-w-3xl mx-auto">
           Les avantages de la télémédecine et de l'e-santé.
         </p>
 

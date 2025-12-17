@@ -35,24 +35,24 @@ export function DocumentationTheses() {
 
   return (
     <div className="h-full w-full bg-gradient-to-br from-red-50 via-white to-red-50 overflow-y-auto flex items-center justify-center">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex items-center justify-center mb-8">
-          <GraduationCap className="text-red-600 mr-4" size={48} />
-          <h1 className="text-gray-900 text-4xl font-bold">Thèses de doctorat</h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+        <div className="flex items-center justify-center mb-4">
+          <GraduationCap className="text-red-600 mr-4" size={40} />
+          <h1 className="text-gray-900 text-3xl font-bold">Thèses de doctorat</h1>
         </div>
-        
-        <p className="text-gray-600 text-center mb-8 max-w-3xl mx-auto">
+
+        <p className="text-gray-600 text-center mb-4 max-w-3xl mx-auto">
           Travaux de recherche doctorale consultés pour cette étude.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto">
           {theses.map((these, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="p-6 bg-white border-2 border-red-200 rounded-2xl hover:border-red-400 hover:shadow-xl transition-all"
+              className="p-4 bg-white border-2 border-red-200 rounded-2xl hover:border-red-400 hover:shadow-xl transition-all"
             >
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-red-100 rounded-lg">

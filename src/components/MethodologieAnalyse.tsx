@@ -39,8 +39,8 @@ export function MethodologieAnalyse() {
   ];
 
   return (
-    <div className="min-h-full w-full bg-gradient-to-br from-green-50 via-white to-green-50 relative flex items-center justify-center py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="h-full w-full bg-gradient-to-br from-green-50 via-white to-green-50 relative flex items-center justify-center overflow-y-auto">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex items-center justify-center mb-8">
           <FileSearch className="text-green-600 mr-4" size={48} />
           <h1 className="text-gray-900 text-4xl font-bold">Analyse et traitement</h1>

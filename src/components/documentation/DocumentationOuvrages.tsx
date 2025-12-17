@@ -43,17 +43,17 @@ export function DocumentationOuvrages({ highlightedSourceId }: DocumentationOuvr
 
   return (
     <div className="h-full w-full bg-gradient-to-br from-red-50 via-white to-red-50 overflow-y-auto flex items-center justify-center">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex items-center justify-center mb-8">
-          <BookOpen className="text-red-600 mr-4" size={48} />
-          <h1 className="text-gray-900 text-4xl font-bold">Ouvrages</h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+        <div className="flex items-center justify-center mb-4">
+          <BookOpen className="text-red-600 mr-4" size={40} />
+          <h1 className="text-gray-900 text-3xl font-bold">Ouvrages</h1>
         </div>
 
-        <p className="text-gray-600 text-center mb-8 max-w-3xl mx-auto">
+        <p className="text-gray-600 text-center mb-4 max-w-3xl mx-auto">
           Livres et ouvrages de référence qui ont nourri notre réflexion.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto">
           {ouvrages.map((ouvrage, index) => (
             <motion.div
               key={index}
@@ -65,7 +65,7 @@ export function DocumentationOuvrages({ highlightedSourceId }: DocumentationOuvr
                 borderColor: highlightedSourceId && (ouvrage.auteur.includes(highlightedSourceId) || ouvrage.titre.includes(highlightedSourceId)) ? "#ef4444" : "#fecaca"
               }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`p-6 bg-white border-2 rounded-2xl transition-all ${highlightedSourceId && (ouvrage.auteur.includes(highlightedSourceId) || ouvrage.titre.includes(highlightedSourceId)) ? 'shadow-2xl ring-4 ring-red-100 z-10' : 'hover:border-red-400 hover:shadow-xl'}`}
+              className={`p-4 bg-white border-2 rounded-2xl transition-all ${highlightedSourceId && (ouvrage.auteur.includes(highlightedSourceId) || ouvrage.titre.includes(highlightedSourceId)) ? 'shadow-2xl ring-4 ring-red-100 z-10' : 'hover:border-red-400 hover:shadow-xl'}`}
             >
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-red-100 rounded-lg">

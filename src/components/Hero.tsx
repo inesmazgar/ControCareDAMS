@@ -8,7 +8,7 @@ interface HeroProps {
 
 export function Hero({ setActiveSection }: HeroProps) {
   return (
-    <div className="min-h-full w-full bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 relative flex items-center justify-center py-12">
+    <div className="h-full w-full bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 relative flex items-center justify-center overflow-y-auto">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div

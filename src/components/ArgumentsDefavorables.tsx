@@ -51,14 +51,14 @@ export function ArgumentsDefavorables({ setActiveSection }: ArgumentsDefavorable
   ];
 
   return (
-    <div className="min-h-full w-full bg-gradient-to-br from-red-50 via-white to-red-50 flex items-center justify-center relative py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex items-center justify-center mb-8">
-          <XCircle className="text-red-600 mr-4" size={48} />
-          <h1 className="text-gray-900 text-4xl font-bold">Arguments Défavorables</h1>
+    <div className="h-full w-full bg-gradient-to-br from-red-50 via-white to-red-50 overflow-y-auto flex items-center justify-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+        <div className="flex items-center justify-center mb-4">
+          <XCircle className="text-red-600 mr-4" size={40} />
+          <h1 className="text-gray-900 text-3xl font-bold">Arguments Défavorables</h1>
         </div>
 
-        <p className="text-gray-600 text-center mb-8 max-w-3xl mx-auto">
+        <p className="text-gray-600 text-center mb-6 max-w-3xl mx-auto">
           Les limites et risques de la télémédecine.
         </p>
 
